@@ -14,6 +14,48 @@ public class Form {
     Font h3 = new Font(Font.SERIF, Font.ITALIC, 18);
     Font p = new Font(Font.SERIF, Font.ITALIC, 14);
     
+    int pos[] = {0,40,100,160,220,280,340};
+    
+    public void setLabel(JLabel label, int i) {
+        label.setFont(h3);
+        label.setBounds(40,pos[i],200,25);
+    }
+    
+    public void setLabel1(JLabel label,int i) {
+        label.setFont(h3);
+        label.setBounds(220,pos[i],200,25);
+    }
+    
+    public void setTextField(JTextField txt, int i) {
+        txt.setFont(h3);
+        txt.setBounds(180,pos[i],380,25);
+    }
+    
+    public JButton createBackBtn(JFrame from, MainForm to){
+        JButton button = new JButton("Back");
+        button.setFont(h3);
+        button.setBounds(20,320,120,40);
+        
+        button.addActionListener((ActionEvent e) -> {
+            //back to main
+            from.setVisible(false);
+            from.dispose();
+            to.view();
+        });
+        return button;
+    }
+    
+    public JButton createSubmitBtn() {
+        JButton button = new JButton("Submit");
+        button.setFont(h3);
+        button.setBounds(200,180,200,80);
+        
+        button.addActionListener((ActionEvent e) -> {
+            //submit
+        });
+        return button;
+    }
+    
     public void createForm(JFrame frame, JPanel panel) {
         
         panel.setLayout(null);
@@ -27,15 +69,5 @@ public class Form {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public void createBackBtn(JButton button,JFrame from,MainForm to){
-        button.setFont(h3);
-        button.setBounds(20,320,120,40);
-        
-        button.addActionListener((ActionEvent e) -> {
-            //back to main
-            from.setVisible(false);
-            from.dispose();
-            to.view();
-        });
-    }
+    
 }

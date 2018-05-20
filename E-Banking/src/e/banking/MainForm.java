@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class MainForm extends Form{
+public class MainForm extends Form {
     JFrame frame = new JFrame("Main");
     
     JPanel panel = new JPanel();
@@ -47,19 +47,33 @@ public class MainForm extends Form{
         button4.setBounds(360,280,220,80);
         
         button1.addActionListener((ActionEvent e) -> {
-            // open deposit
+            // open withdrawal
+            frame.dispose();
+            WithdrawalForm with = new WithdrawalForm();
+            with.view();
+            
         });
         
         button2.addActionListener((ActionEvent e) -> {
-            // open withdrawal
+            // open transaction
+            frame.dispose();
+            TransactionForm tran = new TransactionForm();
+            tran.view();
         });
         
         button3.addActionListener((ActionEvent e) -> {
-            // open transaction
+            // open account information
+            frame.dispose();
+            InfoForm info = new InfoForm();
+            info.view();
         });
         
         button4.addActionListener((ActionEvent e) -> {
-            // open account information
+            // open admin
+            frame.dispose();
+            
+            AdminForm admin = new AdminForm();
+            admin.view();
         });
     }
     
