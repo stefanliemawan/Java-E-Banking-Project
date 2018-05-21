@@ -1,22 +1,21 @@
 package e.banking;
 
+import java.awt.event.*;
 import javax.swing.*;
 
-public class TransactionForm extends Form {
+public class LoginForm extends Form {
     
     MainForm main = new MainForm();
     
-    JFrame frame = new JFrame("Transaction");
+    JFrame frame = new JFrame("Login");
     
     JPanel panel = new JPanel();
-
-    JLabel label1 = new JLabel("Transfer to     ");
-    JLabel label2 = new JLabel("Enter Amount    ");
+    
+    JLabel label1 = new JLabel("Username    ");
+    JLabel label2 = new JLabel("Password    ");
     
     JTextField txt1 = new JTextField();
     JTextField txt2 = new JTextField();
-    
-    JButton button1 = new JButton("Submit");
     
     public void label() {
         super.setLabel(label1,1);
@@ -33,16 +32,13 @@ public class TransactionForm extends Form {
         panel.add(label2);
         panel.add(txt1);
         panel.add(txt2);
-        panel.add(button1);
         panel.add(super.createSubmitBtn(frame,main));
-        panel.add(super.createBackBtn(frame,main));
     }
     
     public void view() {
         super.createForm(frame,panel);
+        panel();
         label();
         txtfield();
-        panel();
     }
-    
 }

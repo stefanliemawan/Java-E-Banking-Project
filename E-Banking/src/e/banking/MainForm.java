@@ -21,16 +21,20 @@ public class MainForm extends Form {
     
     public void label() {
         label1.setFont(h1);
-        label1.setBounds(30,40,300,100);
+        label1.setBounds(20,40,300,100);
+        label1.setForeground(white);
         
         label2.setFont(h1);
-        label2.setBounds(30,100,300,100);
+        label2.setBounds(20,100,300,100);
+        label2.setForeground(white);
         
         label3.setFont(h1);
-        label3.setBounds(30,160,300,100);
+        label3.setBounds(20,160,300,100);
+        label3.setForeground(white);
         
         label4.setFont(h1);
-        label4.setBounds(30,220,300,100);
+        label4.setBounds(20,220,300,100);
+        label4.setForeground(white);
     }
     
     public void button(){

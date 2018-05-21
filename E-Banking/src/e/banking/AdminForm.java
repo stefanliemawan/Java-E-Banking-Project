@@ -1,6 +1,5 @@
 package e.banking;
 
-import java.awt.event.*;
 import javax.swing.*;
 
 public class AdminForm extends Form {

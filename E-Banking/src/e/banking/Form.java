@@ -19,11 +19,13 @@ public class Form {
     public void setLabel(JLabel label, int i) {
         label.setFont(h3);
         label.setBounds(40,pos[i],200,25);
+        label.setForeground(white);
     }
     
-    public void setLabel1(JLabel label,int i) {
+    public void setLabel1(JLabel label, int i) {
         label.setFont(h3);
         label.setBounds(220,pos[i],200,25);
+        label.setForeground(white);
     }
     
     public void setTextField(JTextField txt, int i) {
@@ -38,20 +40,21 @@ public class Form {
         
         button.addActionListener((ActionEvent e) -> {
             //back to main
-            from.setVisible(false);
             from.dispose();
             to.view();
         });
         return button;
     }
     
-    public JButton createSubmitBtn() {
+    public JButton createSubmitBtn(JFrame frame, MainForm main) {
         JButton button = new JButton("Submit");
         button.setFont(h3);
         button.setBounds(200,180,200,80);
         
         button.addActionListener((ActionEvent e) -> {
             //submit
+            frame.dispose();
+            main.view();
         });
         return button;
     }
@@ -59,7 +62,7 @@ public class Form {
     public void createForm(JFrame frame, JPanel panel) {
         
         panel.setLayout(null);
-        panel.setBackground(white);
+        panel.setBackground(black);
         
         frame.getContentPane().add(panel);
         frame.setVisible(true);

@@ -28,7 +28,7 @@ public class WithdrawalForm extends Form {
         panel.add(label1);
         panel.add(txt1);
         panel.add(button1);
-        panel.add(super.createSubmitBtn());
+        panel.add(super.createSubmitBtn(frame,main));
         panel.add(super.createBackBtn(frame,main));
     }
    
