@@ -1,9 +1,11 @@
 package e.banking.view;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class LoginForm extends Form {
+    
+    PINForm pin = new PINForm();
     
     MainForm main = new MainForm();
     
@@ -17,6 +19,8 @@ public class LoginForm extends Form {
     JTextField txt1 = new JTextField();
     JTextField txt2 = new JTextField();
     
+    JButton button1 = new JButton("Submit");
+    
     public void label() {
         super.setLabel(label1,1);
         super.setLabel(label2,2);
@@ -27,12 +31,24 @@ public class LoginForm extends Form {
         super.setTextField(txt2,2);
     }
     
+    public void button() {
+        button1.setFont(h3);
+        button1.setBounds(200,180,200,80);
+        
+        button1.addActionListener((ActionEvent e) -> {
+            //submit
+            frame.dispose();
+            
+            main.view();
+        });
+    }
+    
     public void panel() {
         panel.add(label1);
         panel.add(label2);
         panel.add(txt1);
         panel.add(txt2);
-        panel.add(super.createSubmitBtn(frame,main));
+        panel.add(button1);
     }
     
     public void view() {
@@ -40,5 +56,6 @@ public class LoginForm extends Form {
         panel();
         label();
         txtfield();
+        button();
     }
 }

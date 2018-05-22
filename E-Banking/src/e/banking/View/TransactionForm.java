@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class TransactionForm extends Form {
     
+    PINForm pin = new PINForm();
+    
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Transaction");
@@ -34,7 +36,7 @@ public class TransactionForm extends Form {
         panel.add(txt1);
         panel.add(txt2);
         panel.add(button1);
-        panel.add(super.createSubmitBtn(frame,main));
+        panel.add(super.createSubmitBtn(frame,pin));
         panel.add(super.createBackBtn(frame,main));
     }
     

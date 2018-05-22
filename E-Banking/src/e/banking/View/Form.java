@@ -46,7 +46,7 @@ public class Form {
         return button;
     }
     
-    public JButton createSubmitBtn(JFrame frame, MainForm main) {
+    public JButton createSubmitBtn(JFrame frame, PINForm pin) {
         JButton button = new JButton("Submit");
         button.setFont(h3);
         button.setBounds(200,180,200,80);
@@ -54,7 +54,8 @@ public class Form {
         button.addActionListener((ActionEvent e) -> {
             //submit
             frame.dispose();
-            main.view();
+            
+            pin.view();
         });
         return button;
     }

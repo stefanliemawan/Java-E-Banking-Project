@@ -31,6 +31,7 @@ public class PINForm extends Form {
         button1.addActionListener((ActionEvent e) -> {
             //validation
             dialog.dispose();
+            main.view();
         });
     }
     

@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class WithdrawalForm extends Form {
     
+    PINForm pin = new PINForm();
+    
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Withdrawal");
@@ -28,7 +30,7 @@ public class WithdrawalForm extends Form {
         panel.add(label1);
         panel.add(txt1);
         panel.add(button1);
-        panel.add(super.createSubmitBtn(frame,main));
+        panel.add(super.createSubmitBtn(frame,pin));
         panel.add(super.createBackBtn(frame,main));
     }
    
