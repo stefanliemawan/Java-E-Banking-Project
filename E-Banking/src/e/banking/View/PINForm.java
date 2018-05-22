@@ -7,7 +7,7 @@ public class PINForm extends Form {
     
     MainForm main = new MainForm();
     
-    JFrame frame = new JFrame("PIN");
+    JDialog dialog = new JDialog();
     
     JPanel panel = new JPanel();
     
@@ -18,7 +18,6 @@ public class PINForm extends Form {
     JButton button1 = new JButton("Submit");
     
     public void setting() {
-        frame.setSize(400,200);
         
         label1.setBounds(40,40,200,25);
         
@@ -31,7 +30,7 @@ public class PINForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //validation
-            frame.dispose();
+            dialog.dispose();
         });
     }
     
@@ -41,13 +40,24 @@ public class PINForm extends Form {
         panel.add(button1);
     }
     
+    public void dialog() {
+        panel.setLayout(null);
+        panel.setBackground(black);
+        
+        dialog.getContentPane().add(panel);
+        dialog.setVisible(true);
+        dialog.setResizable(false);
+        dialog.setSize(400,200);
+        dialog.setLocationRelativeTo(null);
+    }
+    
     public void view() {
-        super.createForm(frame,panel);
         super.setLabel(label1,1);
         super.setTextField(txt1,1);
         
         button();
         setting();
         panel();
+        dialog();
     }
 }
