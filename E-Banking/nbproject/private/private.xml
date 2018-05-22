@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/MainForm.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/Controller.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/TransactionForm.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/Form.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/ChPinForm.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/EBanking.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/InfoForm.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/Model.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/WithdrawalForm.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/View.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/ChPassForm.java</file>
-            <file>file:/C:/codefiles/JAVA/E-Banking/src/e/banking/AdminForm.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
