@@ -1,5 +1,6 @@
 package e.banking.view;
 
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class ChPassForm extends Form {
@@ -10,6 +11,8 @@ public class ChPassForm extends Form {
     
     JPanel panel = new JPanel();
     
+    JButton button = new JButton("Submit");
+    
     JLabel label1 = new JLabel("Old Password                ");
     JLabel label2 = new JLabel("New Password                ");
     JLabel label3 = new JLabel("Confirmation                ");
@@ -17,6 +20,18 @@ public class ChPassForm extends Form {
     JTextField txt1 = new JTextField();
     JTextField txt2 = new JTextField();
     JTextField txt3 = new JTextField();
+    
+    public void button() {
+        button.setFont(h3);
+        button.setBounds(200,220,200,80);
+        
+        button.addActionListener((ActionEvent e) -> {
+            //submit
+            frame.dispose();
+            
+            main.view();
+        });
+    }
     
     public void txtfield() {
         super.setTextField(txt1,1);
@@ -38,6 +53,7 @@ public class ChPassForm extends Form {
         panel.add(txt1);
         panel.add(txt2);
         panel.add(txt3);
+        panel.add(button);
     }
     
     public void view() {
@@ -45,5 +61,6 @@ public class ChPassForm extends Form {
         panel();
         label();
         txtfield();
+        button();
     }
 }
