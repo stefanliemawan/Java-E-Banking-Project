@@ -4,7 +4,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class InfoForm extends Form {
-    
+
+    HistoryForm history = new HistoryForm();
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Info");
@@ -48,6 +49,7 @@ public class InfoForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //history
+            history.view();
         });   
     }
     
