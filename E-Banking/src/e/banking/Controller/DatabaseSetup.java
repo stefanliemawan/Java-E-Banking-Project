@@ -26,52 +26,52 @@ public class DatabaseSetup {
             conn = DriverManager.getConnection(url,username,password);
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         }catch(Exception e){
-            error.showMessageBox(e);
+            error.showMessageBox("Error when connecting to database, " + e);
         }
     }
     
     public void insertAccount(int id, String pass, int pin, int info_id, int balance_id) {
         try {
             query = "INSERT INTO Account VALUES("+id+pass+pin+info_id+balance_id+");";
-            rs = stm.executeQuery(query);
+            stm.execute(query);
         }catch (Exception e) {
-            error.showMessageBox(e);
+            error.showMessageBox("Error when inserting into Account Table, " + e);
         }
     }
     
     public void insertBalance(double balance) {
         try {
-            query = "INSERT INTO Balance VALUES("+balance+");";
-            rs = stm.executeQuery(query);
+            query = "INSERT INTO Balance VALUES(NULL"+balance+");";
+            stm.execute(query);
         }catch (Exception e) {
-            error.showMessageBox(e);
+            error.showMessageBox("Error when inserting into Balance Table, " + e);
         }
     }
     
     public void insertInfo(String fname, String lname, LocalDate dob, String phone, String address) {
         try {
-            query = "INSERT INTO Info VALUES("+fname+lname+dob+phone+address+");";
-            rs = stm.executeQuery(query);
+            query = "INSERT INTO Info VALUES(NULL"+fname+lname+dob+phone+address+");";
+            stm.execute(query);
         }catch (Exception e) {
-            error.showMessageBox(e);
+            error.showMessageBox("Error when inserting into Info Table, " + e);
         }
     }
     
     public void insertTransaction(int acc_id, int type_id, int to_id, int quantity, LocalDate date) {
         try {
-            query = "INSERT INTO Transaction VALUES("+acc_id+type_id+to_id+quantity+date+");";
-            rs = stm.executeQuery(query);
+            query = "INSERT INTO Transaction VALUES(NULL"+acc_id+type_id+to_id+quantity+date+");";
+            stm.execute(query);
         }catch (Exception e) {
-            error.showMessageBox(e);
+            error.showMessageBox("Error when inserting into Transaction Table, " + e);
         }
     }
     
     public void insertType(String name) {
         try {
-            query = "INSERT INTO Type VALUES("+name+");";
-            rs = stm.executeQuery(query);
+            query = "INSERT INTO Type VALUES(NULL"+name+");";
+            stm.execute(query);
         }catch (Exception e) {
-            error.showMessageBox(e);
+            error.showMessageBox("Error when inserting into Type Table, " + e);
         }
     }
     

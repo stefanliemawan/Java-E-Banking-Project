@@ -1,13 +1,18 @@
 package e.banking.view;
 
+import e.banking.controller.Validation;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class LoginForm extends Form {
     
     PINForm pin = new PINForm();
-    
+    RegisterForm regis = new RegisterForm();
     MainForm main = new MainForm();
+    Validation validation = new Validation();
+    ErrorMessage error = new ErrorMessage();
     
     JFrame frame = new JFrame("Login");
     
@@ -20,6 +25,18 @@ public class LoginForm extends Form {
     JTextField txt2 = new JTextField();
     
     JButton button1 = new JButton("Submit");
+    JButton button2 = new JButton("New? Register Here");
+    
+    String acc_id = getAcc_id();
+    String pass = getPassword();
+    
+    public String getAcc_id() {
+        return txt1.getText();
+    }
+    
+    public String getPassword() {
+        return txt2.getText();
+    }
     
     public void label() {
         super.setLabel(label1,1);
@@ -30,16 +47,39 @@ public class LoginForm extends Form {
         super.setTextField(txt1,1);
         super.setTextField(txt2,2);
     }
-    
+        
     public void button() {
         button1.setFont(h3);
         button1.setBounds(200,180,200,80);
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            frame.dispose();
-            
-            main.view();
+            if (validation.loginval(acc_id,pass) == true) {
+                frame.dispose();
+                main.view();
+            }
+        });
+        
+        button2.setFont(p);
+        button2.setBounds(200,300,200,40);
+        button2.setBackground(black);
+        button2.setForeground(white);
+        button2.setBorder(null);
+        
+        button2.addMouseListener( new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                button2.setBackground(white);
+                button2.setForeground(black);
+            }
+            public void mouseExited(MouseEvent e) {
+                button2.setBackground(black);
+                button2.setForeground(white);
+            }
+        });
+        
+        button2.addActionListener((ActionEvent e) -> {
+            //submit
+            regis.view();
         });
     }
     
@@ -49,6 +89,7 @@ public class LoginForm extends Form {
         panel.add(txt1);
         panel.add(txt2);
         panel.add(button1);
+        panel.add(button2);
     }
     
     public void view() {

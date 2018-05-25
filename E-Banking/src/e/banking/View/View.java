@@ -6,9 +6,10 @@ public class View {
         
         LoginForm login = new LoginForm();
         login.view();
-    
-//        HistoryForm his = new HistoryForm();
-//        his.view();
+
+//        RegisterForm regis = new RegisterForm();
+//        regis.view();
+
     }
     
     
