@@ -2,8 +2,12 @@ package e.banking.view;
 
 import java.awt.event.*;
 import javax.swing.*;
+import e.banking.controller.Validation;
+
 
 public class RegisterForm extends Form {
+    
+    Validation validation = new Validation();
     
     MainForm main = new MainForm();
     
@@ -13,13 +17,15 @@ public class RegisterForm extends Form {
     
     JLabel label1 = new JLabel("First Name      ");
     JLabel label2 = new JLabel("Last Name       ");
-    JLabel label3 = new JLabel("Phone Number    ");
-    JLabel label4 = new JLabel("Address         ");
+    JLabel label3 = new JLabel("Date of Birth   ");
+    JLabel label4 = new JLabel("Phone Number    ");
+    JLabel label5 = new JLabel("Address         ");
     
     JTextField txt1 = new JTextField();
     JTextField txt2 = new JTextField();
     JTextField txt3 = new JTextField();
     JTextField txt4 = new JTextField();
+    JTextField txt5 = new JTextField();
     
     JButton button1 = new JButton("Submit");
     
@@ -28,19 +34,49 @@ public class RegisterForm extends Form {
         super.setLabel(label2,2);
         super.setLabel(label3,3);
         super.setLabel(label4,4);
+        super.setLabel(label5,5);
         
         super.setTextField(txt1,1);
         super.setTextField(txt2,2);
         super.setTextField(txt3,3);
         super.setTextField(txt4,4);
+        super.setTextField(txt5,5);
+    }
+    
+    String firstname = getFirstName();
+    String lastname = getLastName();
+    String DOB = getDOB();
+    String phone = getPhone();
+    String address = getAddress();
+    
+    public String getFirstName(){
+        return txt1.getText();
+    }
+    
+    public String getLastName(){
+        return txt1.getText();
+    }
+    
+    public String getDOB(){
+        return txt3.getText();
+    }
+    
+    public String getPhone(){
+        return txt4.getText();
+    }
+    
+    public String getAddress(){
+        return txt5.getText();
     }
     
     public void button() {
         button1.setFont(h3);
-        button1.setBounds(360,280,200,80);
+        button1.setBounds(360,320,200,40);
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
+            
+            validation.regisval(firstname, lastname,DOB,phone, address );
             frame.dispose();
         });
     }
@@ -50,10 +86,12 @@ public class RegisterForm extends Form {
         panel.add(label2);
         panel.add(label3);
         panel.add(label4);
+        panel.add(label5);
         panel.add(txt1);
         panel.add(txt2);
         panel.add(txt3);
         panel.add(txt4);
+        panel.add(txt5);
         panel.add(button1);
     }
     

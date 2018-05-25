@@ -2,7 +2,6 @@ package e.banking.controller;
 
 import e.banking.view.ErrorMessage;
 
-import java.time.LocalDate;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -48,7 +47,7 @@ public class DatabaseSetup {
         }
     }
     
-    public void insertInfo(String fname, String lname, LocalDate dob, String phone, String address) {
+    public void insertInfo(String fname, String lname, String dob, String phone, String address) {
         try {
             query = "INSERT INTO Info VALUES(NULL"+fname+lname+dob+phone+address+");";
             stm.execute(query);
@@ -57,7 +56,7 @@ public class DatabaseSetup {
         }
     }
     
-    public void insertTransaction(int acc_id, int type_id, int to_id, int quantity, LocalDate date) {
+    public void insertTransaction(int acc_id, int type_id, int to_id, int quantity, String date) {
         try {
             query = "INSERT INTO Transaction VALUES(NULL"+acc_id+type_id+to_id+quantity+date+");";
             stm.execute(query);

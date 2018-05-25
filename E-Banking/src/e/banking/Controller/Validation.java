@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import e.banking.view.ErrorMessage;
 
+
 public class Validation {
     
     private Statement stm;
@@ -15,6 +16,12 @@ public class Validation {
     ErrorMessage error = new ErrorMessage();  
     
     boolean val = false;
+    
+    public void regisval(String first, String last, String phone, String address, String dob){
+        db.connectDB();
+        db.insertInfo(first, last , dob , phone , address);
+    }
+
     
     public boolean loginval(String acc_id, String pass) {
         db.connectDB();
