@@ -54,7 +54,7 @@ public class LoginForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (validation.loginval(acc_id,pass) == true) {
+            if (validation.loginval(acc_id,pass)) {
                 frame.dispose();
                 main.view();
             }

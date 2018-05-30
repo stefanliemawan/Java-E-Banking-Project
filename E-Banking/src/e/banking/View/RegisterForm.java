@@ -7,7 +7,9 @@ import e.banking.controller.Validation;
 
 public class RegisterForm extends Form {
     
-    Validation validation = new Validation();
+    RegisterConfirmationForm confirm = new RegisterConfirmationForm();
+    
+    Validation val = new Validation();
     
     MainForm main = new MainForm();
     
@@ -43,18 +45,12 @@ public class RegisterForm extends Form {
         super.setTextField(txt5,5);
     }
     
-    String firstname = getFirstName();
-    String lastname = getLastName();
-    String DOB = getDOB();
-    String phone = getPhone();
-    String address = getAddress();
-    
     public String getFirstName(){
         return txt1.getText();
     }
     
     public String getLastName(){
-        return txt1.getText();
+        return txt2.getText();
     }
     
     public String getDOB(){
@@ -75,9 +71,11 @@ public class RegisterForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            
-            validation.regisval(firstname, lastname,DOB,phone, address );
-            frame.dispose();
+            if (val.regisval(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
+                frame.dispose();
+                confirm.view();
+                confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress(),"acc_id");
+            }
         });
     }
     

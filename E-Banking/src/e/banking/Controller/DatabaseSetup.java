@@ -5,18 +5,20 @@ import e.banking.view.ErrorMessage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 
 public class DatabaseSetup {
     
-    private Connection conn;
-    private Statement stm;
-    private ResultSet rs;
+    private Connection conn = null;
+    private Statement stm = null;
+    private ResultSet rs = null; 
+    private String query = null;
     private String url = "jdbc:mysql://localhost/ebanking?autoReconnect=true&useSSL=false";
     private String username = "root";
     private String password = "lala";
-    private String query;
+    
     
     ErrorMessage error = new ErrorMessage();
     
@@ -24,53 +26,68 @@ public class DatabaseSetup {
         try {
             conn = DriverManager.getConnection(url,username,password);
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        }catch(Exception e){
-            error.showMessageBox("Error when connecting to database, " + e);
+        }catch(SQLException e){
+            error.showMessageBox("Error when connecting to database\n" + e);
         }
     }
     
-    public void insertAccount(int id, String pass, int pin, int info_id, int balance_id) {
+    public boolean insertAccount(int id, String pass, int pin, int info_id, int balance_id) {
+        connectDB();
         try {
-            query = "INSERT INTO Account VALUES("+id+pass+pin+info_id+balance_id+");";
+            query = "INSERT INTO Account VALUES("+id+",\""+pass+"\","+pin+","+","+info_id+","+balance_id+");";
             stm.execute(query);
-        }catch (Exception e) {
-            error.showMessageBox("Error when inserting into Account Table, " + e);
+            return true;
+        }catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Account Table\n" + e);
+            return false;
         }
     }
     
-    public void insertBalance(double balance) {
+    public boolean insertBalance(double balance) {
+        connectDB();
         try {
-            query = "INSERT INTO Balance VALUES(NULL"+balance+");";
+            query = "INSERT INTO Balance VALUES(NULL,"+balance+");";
             stm.execute(query);
-        }catch (Exception e) {
-            error.showMessageBox("Error when inserting into Balance Table, " + e);
+            return true;
+        }catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Balance Table\n" + e);
+            return false;
         }
     }
     
-    public void insertInfo(String fname, String lname, String dob, String phone, String address) {
+    public boolean insertInfo(String fname, String lname, String dob, String phone, String address) {
+        connectDB();
         try {
-            query = "INSERT INTO Info VALUES(NULL"+fname+lname+dob+phone+address+");";
-            stm.execute(query);
-        }catch (Exception e) {
-            error.showMessageBox("Error when inserting into Info Table, " + e);
+            query = "INSERT INTO Info VALUES(NULL,\""+fname+"\",\""+lname+"\",\""+dob+"\",\""+phone+"\",\""+address+"\");";
+            stm.executeUpdate(query);
+            return true;
+        }catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Info Table\n" + e);
+            return false;
         }
     }
     
-    public void insertTransaction(int acc_id, int type_id, int to_id, int quantity, String date) {
+    public boolean insertTransaction(int acc_id, int type_id, int to_id, int quantity, String date) {
+        connectDB();
         try {
-            query = "INSERT INTO Transaction VALUES(NULL"+acc_id+type_id+to_id+quantity+date+");";
+            query = "INSERT INTO Transaction VALUES(NULL,"+acc_id+","+type_id+","+to_id+","+quantity+",\""+date+"\");";
             stm.execute(query);
-        }catch (Exception e) {
-            error.showMessageBox("Error when inserting into Transaction Table, " + e);
+            return true;
+        }catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Transaction Table\n" + e);
+            return false;
         }
     }
     
-    public void insertType(String name) {
+    public boolean insertType(String name) {
+        connectDB();
         try {
-            query = "INSERT INTO Type VALUES(NULL"+name+");";
+            query = "INSERT INTO Type VALUES(NULL,\""+name+"\");";
             stm.execute(query);
-        }catch (Exception e) {
-            error.showMessageBox("Error when inserting into Type Table, " + e);
+            return true;
+        }catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Type Table\n" + e);
+            return false;
         }
     }
     

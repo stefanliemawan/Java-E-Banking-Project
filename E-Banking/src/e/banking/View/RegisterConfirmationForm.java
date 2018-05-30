@@ -1,0 +1,129 @@
+package e.banking.view;
+
+import e.banking.controller.Validation;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class RegisterConfirmationForm extends Form {
+    
+    Validation val = new Validation();
+    
+    JDialog dialog = new JDialog();
+    
+    JPanel panel = new JPanel();
+    
+    JLabel label1 = new JLabel("First Name          : ");
+    JLabel label2 = new JLabel("Last Name           : ");
+    JLabel label3 = new JLabel("Date of Birth       : ");
+    JLabel label4 = new JLabel("Phone Number    : ");
+    JLabel label5 = new JLabel("Address             : ");
+    JLabel label6 = new JLabel("PLEASE CHECK THAT THE DATA ABOVE ARE COMPLETELY TRUE");
+    JLabel label7 = new JLabel("Your Account ID : ");
+    JLabel label8 = new JLabel("Set Password    : ");
+    JLabel label9 = new JLabel("Set PIN     : ");
+    
+    JLabel label11 = new JLabel();
+    JLabel label12 = new JLabel();
+    JLabel label13 = new JLabel();
+    JLabel label14 = new JLabel();
+    JLabel label15 = new JLabel();
+    JLabel label17 = new JLabel();
+    
+    JTextField txt1 = new JTextField();
+    JTextField txt2 = new JTextField();
+    
+    JButton button1 = new JButton("Submit");
+    
+    public String getPass() {
+        return txt1.getText();
+    }
+    
+    public int getPIN() {
+        return Integer.parseInt(txt2.getText());
+    }
+    
+    
+    public void setText(String fname, String lname, String dob, String phone_num, String address, String acc_id) {
+        
+        label11.setText(fname);
+        label12.setText(lname);
+        label13.setText(dob);
+        label14.setText(phone_num);
+        label15.setText(address);
+        label17.setText(acc_id);
+    }
+    
+    public void setting() {
+        super.setLabel(label1,1);
+        super.setLabel(label2,2);
+        super.setLabel(label3,3);
+        super.setLabel(label4,4);
+        super.setLabel(label5,5);
+        super.setLabel(label6,6);
+        label6.setBounds(40,pos[6],700,25);
+        super.setLabel(label7,7);
+        super.setLabel(label8,8);
+        super.setLabel(label9,9);
+        
+        super.setLabel1(label11,1);
+        super.setLabel1(label12,2);
+        super.setLabel1(label13,3);
+        super.setLabel1(label14,4);
+        super.setLabel1(label15,5);
+        
+        super.setTextField(txt1,8);
+        txt1.setBounds(180,pos[8],280,25);
+        super.setTextField(txt2,9);
+        txt2.setBounds(180,pos[9],280,25);
+    }
+    
+    public void button() {
+        button1.setFont(h3);
+        button1.setBounds(560,440,200,100);
+        
+        button1.addActionListener((ActionEvent e) -> {
+            //submit
+            
+            dialog.dispose();
+        });
+    }
+    
+    public void panel() {
+        panel.add(label1);
+        panel.add(label2);
+        panel.add(label3);
+        panel.add(label4);
+        panel.add(label5);
+        panel.add(label6);
+        panel.add(label7);
+        panel.add(label8);
+        panel.add(label9);
+        panel.add(label11);
+        panel.add(label12);
+        panel.add(label13);
+        panel.add(label14);
+        panel.add(label15);
+        panel.add(txt1);
+        panel.add(txt2);
+        panel.add(button1);
+    }
+    
+    public void dialog() {
+        panel.setLayout(null);
+        panel.setBackground(black);
+        
+        dialog.getContentPane().add(panel);
+        dialog.setVisible(true);
+        dialog.setResizable(false);
+        dialog.setSize(800,600);
+        dialog.setLocationRelativeTo(null);
+    }
+    
+    public void view() {
+        button();
+        setting();
+        panel();
+        dialog();
+    }
+}

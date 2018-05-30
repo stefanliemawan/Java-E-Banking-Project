@@ -14,7 +14,7 @@ public class Form {
     Font h3 = new Font(Font.SERIF, Font.ITALIC, 18);
     Font p = new Font(Font.SERIF, Font.ITALIC, 14);
     
-    int pos[] = {0,40,100,160,220,280,340};
+    int pos[] = {0,40,100,160,220,280,340,400,460,520,580};
     
     public void setLabel(JLabel label, int i) {
         label.setFont(h3);
