@@ -7,6 +7,8 @@ import javax.swing.*;
 
 public class RegisterConfirmationForm extends Form {
     
+    Thread thread = new Thread();
+    
     Validation val = new Validation();
     
     JDialog dialog = new JDialog();
@@ -39,19 +41,36 @@ public class RegisterConfirmationForm extends Form {
         return txt1.getText();
     }
     
-    public int getPIN() {
+    public int getPIN() { //ERROR, NUMBERFORMATEXCEPTION
         return Integer.parseInt(txt2.getText());
     }
     
+    public int generateAcc_ID() {
+
+        String id = Integer.toString(val.getLastInfo_ID());
+        if(id.length() == 1) id = "0"+id;
+        String dob = val.getLastDOB();
+        char y1 = dob.charAt(2);
+        char y2 = dob.charAt(3);
+        char m1 = dob.charAt(5);
+        char m2 = dob.charAt(6);
+        char d1 = dob.charAt(8);
+        char d2 = dob.charAt(9);
+        
+        if (id.equals(null)) id = Integer.toString(1);
+        
+        String acc_id = id+y1+y2+m1+m2+d1+d2;
+        return Integer.parseInt(acc_id);
+    } 
     
-    public void setText(String fname, String lname, String dob, String phone_num, String address, String acc_id) {
+    public void setText(String fname, String lname, String dob, String phone_num, String address) {
         
         label11.setText(fname);
         label12.setText(lname);
         label13.setText(dob);
         label14.setText(phone_num);
         label15.setText(address);
-        label17.setText(acc_id);
+        label17.setText(Integer.toString(generateAcc_ID()));
     }
     
     public void setting() {
@@ -71,6 +90,7 @@ public class RegisterConfirmationForm extends Form {
         super.setLabel1(label13,3);
         super.setLabel1(label14,4);
         super.setLabel1(label15,5);
+        super.setLabel1(label17,7);
         
         super.setTextField(txt1,8);
         txt1.setBounds(180,pos[8],280,25);
@@ -84,9 +104,13 @@ public class RegisterConfirmationForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            
+            val.FinalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID());// error when insering
             dialog.dispose();
         });
+    }
+    
+    public Thread getThread() {
+        return thread;
     }
     
     public void panel() {
@@ -104,6 +128,7 @@ public class RegisterConfirmationForm extends Form {
         panel.add(label13);
         panel.add(label14);
         panel.add(label15);
+        panel.add(label17);
         panel.add(txt1);
         panel.add(txt2);
         panel.add(button1);

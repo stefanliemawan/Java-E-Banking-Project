@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class Validation {
     
+    private Connection conn = null;
     private Statement stm = null;
     private ResultSet rs = null;
     private String query = null;
@@ -18,15 +19,13 @@ public class Validation {
     
     static boolean val = false;
     
-    public boolean regisval(String first, String last, String dob, String phone, String address){
-        if (db.insertInfo(first,last,dob,phone,address)) return true;
-        else return false;
-    }
-
+    // REGIS VALIDATION PISAH FILE AJA(?)    (1 VALIDATION 1 FILE)
+    // REGIV VAL KALO ABORT REGISTERCONFRIMATION FORM BALANCE & INFO KEINPUT TAPI ACCOUNT GK
     
     public boolean loginval(String acc_id, String pass) {
+        db.connectDB();
         try {
-            query = "SELECT * FROM ACCOUNT WHERE acc_id ="+acc_id; // semua query pindah ke dbsetup kalo bisa
+            query = "SELECT * FROM ACCOUNT WHERE acc_id ="+acc_id;
             rs = stm.executeQuery(query);
             if (rs.getString("password") == pass) {
                 val =  true;
@@ -39,5 +38,28 @@ public class Validation {
         }
         return val;
     }
+    
+    public boolean regisval(String first, String last, String dob, String phone, String address){
+        if (db.insertBalance(0) && db.insertInfo(first,last,dob,phone,address)) return true;
+        else return false;
+    }
+    
+    public boolean FinalRegisVal(int acc_id, String password, int PIN, int info_id, int balance_id) {
+        if (db.insertAccount(acc_id, password, PIN, info_id, balance_id) ) return true;
+        else return false;
+    }
+    
+    public int getLastInfo_ID() {
+        return db.SelectLastInfo_ID();
+    }
+    
+    public int getLastBalance_ID() {
+        return db.SelectLastBalance_ID();
+    }
+    
+    public String getLastDOB() {
+        return db.SelectLastDOB();
+    }
+    
     
 }

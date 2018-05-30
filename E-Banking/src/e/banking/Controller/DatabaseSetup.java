@@ -34,11 +34,11 @@ public class DatabaseSetup {
     public boolean insertAccount(int id, String pass, int pin, int info_id, int balance_id) {
         connectDB();
         try {
-            query = "INSERT INTO Account VALUES("+id+",\""+pass+"\","+pin+","+","+info_id+","+balance_id+");";
+            query = "INSERT INTO Account VALUES("+id+",\""+pass+"\","+pin+","+info_id+","+balance_id+");";
             stm.execute(query);
             return true;
         }catch (SQLException e) {
-            error.showMessageBox("Error when inserting into Account Table\n" + e);
+            error.showMessageBox("Error when inserting into Account Table\n" + e +"\n"+query);
             return false;
         }
     }
@@ -91,4 +91,62 @@ public class DatabaseSetup {
         }
     }
     
+    public int SelectLastAcc_ID() {
+        int result = 0;
+        connectDB();
+        try {
+            stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "SELECT acc_id from Account WHERE acc_id=(SELECT MAX(acc_id) FROM Account);";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+            result = rs.getInt("acc_id");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting acc_id from Account Table\n" + e);
+        }
+        return result;
+    }
+    
+     public int SelectLastInfo_ID() {
+        int result = 0;
+        connectDB();
+        try {
+            stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "SELECT info_id from Info WHERE info_id=(SELECT MAX(info_id) FROM Info);";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+            result = rs.getInt("info_id");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting info_id from Info Table\n" + e);
+        }
+        return result;
+    }
+     
+      public int SelectLastBalance_ID() {
+        int result = 0;
+        connectDB();
+        try {
+            stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            query = "SELECT balance_id from Balance WHERE balance_id=(SELECT MAX(balance_id) FROM Balance);";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+            result = rs.getInt("balance_id");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting balance_id from Balance Table\n" + e);
+        }
+        return result;
+    }
+    
+    public String SelectLastDOB() {
+        String dob = null;
+        connectDB();
+        try {
+            query = "SELECT dob from Info WHERE info_id=(SELECT MAX(info_id) FROM Info);";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+            dob = rs.getString("dob");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting from DOB from Info Table\n" + e);
+        }
+        return dob;
+    }
 }

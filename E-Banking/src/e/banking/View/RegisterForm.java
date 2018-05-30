@@ -3,6 +3,8 @@ package e.banking.view;
 import java.awt.event.*;
 import javax.swing.*;
 import e.banking.controller.Validation;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class RegisterForm extends Form {
@@ -31,20 +33,6 @@ public class RegisterForm extends Form {
     
     JButton button1 = new JButton("Submit");
     
-    public void setting() {
-        super.setLabel(label1,1);
-        super.setLabel(label2,2);
-        super.setLabel(label3,3);
-        super.setLabel(label4,4);
-        super.setLabel(label5,5);
-        
-        super.setTextField(txt1,1);
-        super.setTextField(txt2,2);
-        super.setTextField(txt3,3);
-        super.setTextField(txt4,4);
-        super.setTextField(txt5,5);
-    }
-    
     public String getFirstName(){
         return txt1.getText();
     }
@@ -65,6 +53,21 @@ public class RegisterForm extends Form {
         return txt5.getText();
     }
     
+    public void setting() {
+        super.setLabel(label1,1);
+        super.setLabel(label2,2);
+        super.setLabel(label3,3);
+        super.setLabel(label4,4);
+        super.setLabel(label5,5);
+        
+        super.setTextField(txt1,1);
+        super.setTextField(txt2,2);
+        super.setTextField(txt3,3);
+        super.setTextField(txt4,4);
+        super.setTextField(txt5,5);
+    }
+    
+    
     public void button() {
         button1.setFont(h3);
         button1.setBounds(360,320,200,40);
@@ -74,8 +77,9 @@ public class RegisterForm extends Form {
             if (val.regisval(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
                 frame.dispose();
                 confirm.view();
-                confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress(),"acc_id");
+                confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());
             }
+               
         });
     }
     
@@ -98,6 +102,8 @@ public class RegisterForm extends Form {
         setting();
         panel();
         button();
+        
+        
     }
     
 }
