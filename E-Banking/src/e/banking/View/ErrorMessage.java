@@ -1,7 +1,6 @@
-package e.banking.view;
+package e.banking.View;
 
 import javax.swing.JOptionPane;
-import javax.swing.JLabel;
 
 public class ErrorMessage {
     //show error message from exception

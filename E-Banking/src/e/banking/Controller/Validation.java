@@ -1,8 +1,8 @@
-package e.banking.controller;
+package e.banking.Controller;
 
-import e.banking.model.DatabaseSetup;
-import e.banking.view.ErrorMessage;
-import e.banking.controller.State;
+import e.banking.Model.DatabaseSetup;
+import e.banking.View.ErrorMessage;
+import e.banking.Controller.State;
 
 public class Validation {
     

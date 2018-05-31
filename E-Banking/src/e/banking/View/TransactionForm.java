@@ -1,7 +1,7 @@
-package e.banking.view;
+package e.banking.View;
 
 import javax.swing.*;
-import e.banking.controller.State;
+import e.banking.Controller.State;
 
 public class TransactionForm extends Form {
     

@@ -1,6 +1,6 @@
-package e.banking.model;
+package e.banking.Model;
 
-import e.banking.view.ErrorMessage;
+import e.banking.View.ErrorMessage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

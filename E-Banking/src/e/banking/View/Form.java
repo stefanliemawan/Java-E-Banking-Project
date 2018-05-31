@@ -1,4 +1,4 @@
-package e.banking.view;
+package e.banking.View;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class Form {
     
-    Color black = new Color (0,0,0);
-    Color white = new Color (255,255,255);
+    Color black = new Color(0,0,0);
+    Color white = new Color(255,255,255);
     
     Font h1 = new Font(Font.SERIF, Font.ITALIC, 40);
     Font h2 = new Font(Font.SERIF, Font.ITALIC, 24);

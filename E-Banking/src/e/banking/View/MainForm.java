@@ -1,8 +1,8 @@
-package e.banking.view;
+package e.banking.View;
 
 import java.awt.event.*;
 import javax.swing.*;
-import e.banking.controller.State;
+import e.banking.Controller.State;
 
 public class MainForm extends Form {
     

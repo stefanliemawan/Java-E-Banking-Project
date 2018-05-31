@@ -1,9 +1,9 @@
-package e.banking.view;
+package e.banking.View;
 
 import java.awt.event.*;
 import javax.swing.*;
-import e.banking.controller.Validation;
-import e.banking.controller.State;
+import e.banking.Controller.Validation;
+import e.banking.Controller.State;
 
 
 public class RegisterForm extends Form {

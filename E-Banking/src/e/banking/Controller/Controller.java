@@ -1,4 +1,4 @@
-package e.banking.controller;
+package e.banking.Controller;
 
 public class Controller {
     

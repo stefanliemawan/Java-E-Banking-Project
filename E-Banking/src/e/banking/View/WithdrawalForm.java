@@ -1,6 +1,6 @@
-package e.banking.view;
+package e.banking.View;
 
-import e.banking.controller.State;
+import e.banking.Controller.State;
 import javax.swing.*;
 
 public class WithdrawalForm extends Form {

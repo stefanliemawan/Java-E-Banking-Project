@@ -1,7 +1,7 @@
-package e.banking.view;
+package e.banking.View;
 
-import e.banking.controller.Validation;
-import e.banking.controller.State;
+import e.banking.Controller.Validation;
+import e.banking.Controller.State;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -54,6 +54,7 @@ public class LoginForm extends Form {
         button1.addActionListener((ActionEvent e) -> {
             //submit
             if (validation.loginVal(Integer.parseInt(getAcc_ID()),getPassword())) {
+                state.setAcc_ID(getAcc_ID());
                 frame.dispose();
                 main.view();
             }

@@ -1,7 +1,7 @@
-package e.banking.view;
+package e.banking.View;
 
-import e.banking.controller.Validation;
-import e.banking.controller.State;
+import e.banking.Controller.Validation;
+import e.banking.Controller.State;
 import java.awt.event.*;
 import javax.swing.*;
 

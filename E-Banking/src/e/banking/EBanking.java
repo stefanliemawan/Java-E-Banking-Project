@@ -1,7 +1,7 @@
 package e.banking;
 
-import e.banking.view.View;
-import e.banking.controller.Controller;
+import e.banking.View.View;
+import e.banking.Controller.Controller;
 
 public class EBanking {
     

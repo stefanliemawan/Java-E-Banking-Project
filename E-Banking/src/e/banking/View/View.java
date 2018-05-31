@@ -1,4 +1,4 @@
-package e.banking.view;
+package e.banking.View;
 
 public class View {
     
