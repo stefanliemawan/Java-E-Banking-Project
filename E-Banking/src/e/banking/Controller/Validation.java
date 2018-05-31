@@ -18,6 +18,7 @@ public class Validation {
         int acc_id = state.getAcc_ID();
         try {
             //do transaction, check balance, minus balance
+            
         }catch(Exception e) {
             error.showMessageBox("Withdrawal Error\n" + e);
         }

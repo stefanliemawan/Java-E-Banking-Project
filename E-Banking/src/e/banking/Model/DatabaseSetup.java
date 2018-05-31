@@ -67,7 +67,19 @@ public class DatabaseSetup {
         }
     }
     
-    public boolean insertTransaction(int acc_id, int type_id, int to_id, int quantity, String date) {
+    public boolean insertTransaction(int acc_id, int type_id, int quantity, String date) {
+        connectDB();
+        try {
+            query = "INSERT INTO Transaction VALUES(NULL,"+acc_id+","+type_id+",NULL,"+quantity+",\""+date+"\");";
+            stm.execute(query);
+            return true;
+        }catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Transaction Table\n" + e);
+            return false;
+        }
+    }
+    
+    public boolean insertTransactionTo(int acc_id, int type_id, int to_id, int quantity, String date) {
         connectDB();
         try {
             query = "INSERT INTO Transaction VALUES(NULL,"+acc_id+","+type_id+","+to_id+","+quantity+",\""+date+"\");";
