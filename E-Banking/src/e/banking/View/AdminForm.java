@@ -1,10 +1,12 @@
 package e.banking.view;
 
+import e.banking.controller.State;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class AdminForm extends Form {
     
+    State state = new State();
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Admin");
@@ -43,6 +45,7 @@ public class AdminForm extends Form {
     }
     
     public void view() {
+        state.changeState("Admin");
         super.createForm(frame,panel);
         panel();
         button();

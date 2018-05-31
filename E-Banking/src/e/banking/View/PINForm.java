@@ -2,9 +2,11 @@ package e.banking.view;
 
 import java.awt.event.*;
 import javax.swing.*;
+import e.banking.controller.State;
 
 public class PINForm extends Form {
     
+    State state = new State();
     MainForm main = new MainForm();
     
     JDialog dialog = new JDialog();
@@ -53,6 +55,8 @@ public class PINForm extends Form {
     }
     
     public void view() {
+        state.changeState("PIN");
+        
         super.setLabel(label1,1);
         super.setTextField(txt1,1);
         

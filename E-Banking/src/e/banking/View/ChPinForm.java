@@ -2,9 +2,11 @@ package e.banking.view;
 
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+import e.banking.controller.State;
 
 public class ChPinForm extends Form {
-    
+
+    State state = new State();
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Change PIN");
@@ -57,6 +59,7 @@ public class ChPinForm extends Form {
     }
     
     public void view() {
+        state.changeState("ChangePIN");
         super.createForm(frame,panel);
         panel();
         label();

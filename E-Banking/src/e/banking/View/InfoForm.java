@@ -1,10 +1,12 @@
 package e.banking.view;
 
+import e.banking.controller.State;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class InfoForm extends Form {
 
+    State state = new State();
     HistoryForm history = new HistoryForm();
     MainForm main = new MainForm();
     
@@ -54,6 +56,7 @@ public class InfoForm extends Form {
     }
     
     public void view() {
+        state.changeState("Info");
         super.createForm(frame,panel);
         button();
         label();

@@ -1,14 +1,14 @@
 package e.banking.view;
 
 import e.banking.controller.Validation;
+import e.banking.controller.State;
 import java.awt.event.*;
 import javax.swing.*;
 
 
 public class RegisterConfirmationForm extends Form {
     
-    Thread thread = new Thread();
-    
+    State state = new State();
     Validation val = new Validation();
     
     JDialog dialog = new JDialog();
@@ -104,7 +104,7 @@ public class RegisterConfirmationForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            val.FinalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID());
+            val.finalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID());
             dialog.dispose();
         });
     }
@@ -143,6 +143,8 @@ public class RegisterConfirmationForm extends Form {
     }
     
     public void view() {
+        state.changeState("RegisterConfirmtion");
+        
         button();
         setting();
         panel();

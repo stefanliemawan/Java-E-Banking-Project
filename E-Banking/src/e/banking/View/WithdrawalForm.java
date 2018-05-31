@@ -1,11 +1,12 @@
 package e.banking.view;
 
+import e.banking.controller.State;
 import javax.swing.*;
 
 public class WithdrawalForm extends Form {
     
+    State state = new State();
     PINForm pin = new PINForm();
-    
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Withdrawal");
@@ -36,6 +37,8 @@ public class WithdrawalForm extends Form {
    
     
     public void view() {
+        state.changeState("Withdrawal");
+        
         super.createForm(frame, panel);
         label();
         txtfield();

@@ -1,9 +1,11 @@
 package e.banking.view;
 
 import javax.swing.*;
+import e.banking.controller.State;
 
 public class TransactionForm extends Form {
     
+    State state = new State();
     PINForm pin = new PINForm();
     
     MainForm main = new MainForm();
@@ -41,6 +43,8 @@ public class TransactionForm extends Form {
     }
     
     public void view() {
+        state.changeState("Transaction");
+        
         super.createForm(frame,panel);
         label();
         txtfield();

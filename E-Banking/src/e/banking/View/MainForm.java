@@ -2,9 +2,11 @@ package e.banking.view;
 
 import java.awt.event.*;
 import javax.swing.*;
-
+import e.banking.controller.State;
 
 public class MainForm extends Form {
+    
+    State state = new State();
     JFrame frame = new JFrame("Main");
     
     JPanel panel = new JPanel();
@@ -94,7 +96,7 @@ public class MainForm extends Form {
     
     
     public void view(){
-        
+        state.changeState("Main");
         super.createForm(frame,panel);
         panel();
         label();

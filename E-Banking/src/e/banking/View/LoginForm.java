@@ -1,6 +1,7 @@
 package e.banking.view;
 
 import e.banking.controller.Validation;
+import e.banking.controller.State;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -8,6 +9,7 @@ import javax.swing.*;
 
 public class LoginForm extends Form {
     
+    State state = new State();
     PINForm pin = new PINForm();
     RegisterForm regis = new RegisterForm();
     MainForm main = new MainForm();
@@ -51,7 +53,7 @@ public class LoginForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (validation.loginval(Integer.parseInt(getAcc_ID()),getPassword())) {
+            if (validation.loginVal(Integer.parseInt(getAcc_ID()),getPassword())) {
                 frame.dispose();
                 main.view();
             }
@@ -90,6 +92,7 @@ public class LoginForm extends Form {
     }
     
     public void view() {
+        state.changeState("Login");
         super.createForm(frame,panel);
         panel();
         label();

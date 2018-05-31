@@ -1,10 +1,12 @@
 package e.banking.view;
 
-import javax.swing.table.DefaultTableModel;
+import e.banking.controller.State;
 import javax.swing.*;
 
 public class HistoryForm extends Form {
 
+    State state = new State();
+    
     JDialog dialog = new JDialog();
     JPanel panel = new JPanel();
     JLabel label = new JLabel("Transaction History");
@@ -14,7 +16,6 @@ public class HistoryForm extends Form {
     
     DefaultListModel listmodel = new DefaultListModel();
     JList list = new JList(listmodel);
-    //pake list aja jangan table
     
     public void list() {
         
@@ -52,6 +53,7 @@ public class HistoryForm extends Form {
     }
     
     public void view() {
+        state.changeState("History");
         super.setLabel(label,1);
         list();
         setting();

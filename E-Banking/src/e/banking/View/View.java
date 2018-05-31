@@ -4,11 +4,11 @@ public class View {
     
     public void startgui(){
         
-        LoginForm login = new LoginForm();
-        login.view();
+//        LoginForm login = new LoginForm();
+//        login.view();
 
-//        RegisterForm regis = new RegisterForm();
-//        regis.view();
+        MainForm main = new MainForm();
+        main.view();
 
     }
     

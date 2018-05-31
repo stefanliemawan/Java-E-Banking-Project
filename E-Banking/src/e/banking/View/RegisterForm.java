@@ -3,16 +3,14 @@ package e.banking.view;
 import java.awt.event.*;
 import javax.swing.*;
 import e.banking.controller.Validation;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import e.banking.controller.State;
 
 
 public class RegisterForm extends Form {
     
+    State state = new State();
     RegisterConfirmationForm confirm = new RegisterConfirmationForm();
-    
     Validation val = new Validation();
-    
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Register");
@@ -74,7 +72,7 @@ public class RegisterForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (val.regisval(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
+            if (val.regisVal(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
                 frame.dispose();
                 confirm.view();
                 confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());
@@ -98,6 +96,7 @@ public class RegisterForm extends Form {
     }
     
     public void view() {
+        state.changeState("Register");
         super.createForm(frame,panel);
         setting();
         panel();

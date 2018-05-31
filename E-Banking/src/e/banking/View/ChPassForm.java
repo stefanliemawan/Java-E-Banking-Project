@@ -2,9 +2,11 @@ package e.banking.view;
 
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+import e.banking.controller.State;
 
 public class ChPassForm extends Form {
     
+    State state = new State();
     MainForm main = new MainForm();
     
     JFrame frame = new JFrame("Change Password");
@@ -57,6 +59,7 @@ public class ChPassForm extends Form {
     }
     
     public void view() {
+        state.changeState("ChangePassword");
         super.createForm(frame,panel);
         panel();
         label();
