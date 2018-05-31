@@ -91,7 +91,7 @@ public class DatabaseSetup {
         }
     }
     
-    public int SelectLastAcc_ID() {
+    public int selectLastAcc_ID() {
         int result = 0;
         connectDB();
         try {
@@ -106,7 +106,7 @@ public class DatabaseSetup {
         return result;
     }
     
-     public int SelectLastInfo_ID() {
+     public int selectLastInfo_ID() {
         int result = 0;
         connectDB();
         try {
@@ -121,7 +121,7 @@ public class DatabaseSetup {
         return result;
     }
      
-      public int SelectLastBalance_ID() {
+      public int selectLastBalance_ID() {
         int result = 0;
         connectDB();
         try {
@@ -136,7 +136,7 @@ public class DatabaseSetup {
         return result;
     }
     
-    public String SelectLastDOB() {
+    public String selectLastDOB() {
         String dob = null;
         connectDB();
         try {
@@ -149,4 +149,19 @@ public class DatabaseSetup {
         }
         return dob;
     }
+    
+    public String selectPassword(int acc_id) {
+        String password = null;
+        connectDB();
+        try {
+            query = "SELECT password FROM ACCOUNT WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next()) 
+            password = rs.getString("password");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting Password from Account Table, " + e);
+        }
+        return password;
+    }
+    
 }

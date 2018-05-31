@@ -48,16 +48,14 @@ public class RegisterConfirmationForm extends Form {
     public int generateAcc_ID() {
 
         String id = Integer.toString(val.getLastInfo_ID());
-        if(id.length() == 1) id = "0"+id;
         String dob = val.getLastDOB();
+        
         char y1 = dob.charAt(2);
         char y2 = dob.charAt(3);
         char m1 = dob.charAt(5);
         char m2 = dob.charAt(6);
         char d1 = dob.charAt(8);
         char d2 = dob.charAt(9);
-        
-        if (id.equals(null)) id = Integer.toString(1);
         
         String acc_id = id+y1+y2+m1+m2+d1+d2;
         return Integer.parseInt(acc_id);
@@ -70,7 +68,9 @@ public class RegisterConfirmationForm extends Form {
         label13.setText(dob);
         label14.setText(phone_num);
         label15.setText(address);
-        label17.setText(Integer.toString(generateAcc_ID()));
+        if (val.getLastInfo_ID() < 10) label17.setText("0"+Integer.toString(generateAcc_ID()));
+        else label17.setText(Integer.toString(generateAcc_ID()));
+        
     }
     
     public void setting() {
@@ -104,14 +104,11 @@ public class RegisterConfirmationForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            val.FinalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID());// error when insering
+            val.FinalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID());
             dialog.dispose();
         });
     }
     
-    public Thread getThread() {
-        return thread;
-    }
     
     public void panel() {
         panel.add(label1);

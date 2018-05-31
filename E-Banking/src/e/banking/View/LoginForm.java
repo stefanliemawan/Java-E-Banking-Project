@@ -27,10 +27,7 @@ public class LoginForm extends Form {
     JButton button1 = new JButton("Submit");
     JButton button2 = new JButton("New? Register Here");
     
-    String acc_id = getAcc_id();
-    String pass = getPassword();
-    
-    public String getAcc_id() {
+    public String getAcc_ID() {
         return txt1.getText();
     }
     
@@ -54,7 +51,7 @@ public class LoginForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (validation.loginval(acc_id,pass)) {
+            if (validation.loginval(Integer.parseInt(getAcc_ID()),getPassword())) {
                 frame.dispose();
                 main.view();
             }
