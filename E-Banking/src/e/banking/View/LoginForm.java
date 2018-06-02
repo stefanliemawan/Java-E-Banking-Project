@@ -55,6 +55,7 @@ public class LoginForm extends Form {
             //submit
             if (validation.loginVal(Integer.parseInt(getAcc_ID()),getPassword())) {
                 state.setAcc_ID(getAcc_ID());
+
                 frame.dispose();
                 main.view();
             }

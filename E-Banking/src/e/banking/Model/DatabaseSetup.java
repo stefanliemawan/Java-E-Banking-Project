@@ -15,9 +15,9 @@ public class DatabaseSetup {
     private Statement stm = null;
     private ResultSet rs = null; 
     private String query = null;
-    private String url = "jdbc:mysql://localhost/ebanking?autoReconnect=true&useSSL=false";
+    private String url = "jdbc:mysql://localhost/ebanking";
     private String username = "root";
-    private String password = "lala";
+    private String password = "";
     
     
     ErrorMessage error = new ErrorMessage();
@@ -54,7 +54,36 @@ public class DatabaseSetup {
             return false;
         }
     }
-    
+
+
+    //changing to new password
+    public boolean ChangePassword(int acc_id, String password){
+        connectDB();
+        try{
+            query = "UPDATE account SET password =\""+password+"\" where acc_id ="+acc_id+";";
+            stm.executeUpdate(query);
+            return true;
+        }catch(SQLException e){
+            error.showMessageBox("Error when updating password\n" + e);
+            return false;
+        }
+    }
+
+    //changing to new pin
+        public boolean ChangePIN(int acc_id, int pin){
+        connectDB();
+        try{
+            query = "UPDATE account SET pin = "+pin+" where acc_id =" +acc_id+";";
+            stm.executeUpdate(query);
+            return true;
+        }catch(SQLException e){
+            error.showMessageBox("Error when updating PIN\n" + e);
+            return false;
+        }
+    }
+
+
+
     public boolean insertInfo(String fname, String lname, String dob, String phone, String address) {
         connectDB();
         try {
@@ -174,6 +203,22 @@ public class DatabaseSetup {
             error.showMessageBox("Error when selecting Password from Account Table, " + e);
         }
         return password;
+    }
+
+
+
+    public int selectPIN(int acc_id) {
+        int PIN = 0;
+        connectDB();
+        try {
+            query = "SELECT pin FROM ACCOUNT WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+                PIN = rs.getInt("pin");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting pin from Account Table, " + e);
+        }
+        return PIN;
     }
     
 }

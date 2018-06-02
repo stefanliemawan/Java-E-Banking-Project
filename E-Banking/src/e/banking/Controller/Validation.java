@@ -11,9 +11,72 @@ public class Validation {
     ErrorMessage error = new ErrorMessage();  
     
     static boolean val = false;
-    
+
+    //change old to new pin
+    public void updatePIN(int acc_id,int pin){
+        db.ChangePIN(acc_id, pin);
+    }
+
+
+
+
+
+
+    //change old to new password
+    public void updatePass(int acc_id,String pass){
+        db.ChangePassword(acc_id, pass);
+    }
+
+    //confirm new PIN
+    public boolean ConfirmNewPIN(String pin1, String pin2){
+        try{
+            if(pin1.equals(pin2))val = true;
+            else val = false;
+        }catch(Exception e){
+            error.showMessageBox("new PIN confirmation error\n"+e);
+        }
+        return val;
+    }
+
+    //confirm new password
+    public boolean ConfirmNewPass(String pass1, String pass2){
+        try{
+            if(pass1.equals(pass2))val = true;
+            else val = false;
+        }catch(Exception e){
+            error.showMessageBox("new Password confirmation error\n"+e);
+        }
+        return val;
+    }
+
+    //oldPINValidation
+    public boolean OldPIN(int acc_id, int pin) {
+        try {
+            if (db.selectPIN(state.getAcc_ID())==pin) val = true;
+            else val = false;
+        }catch (Exception e) {
+            error.showMessageBox("Old PIN is invalid mistake in validation\n" + e);
+        }
+        return val;
+    }
+
+    //oldPassValidation
+    public boolean OldPass(int acc_id, String password) {
+        try {
+
+            if (db.selectPassword(state.getAcc_ID()).equals(password)) {val = true;}
+            else val = false;
+        }catch (Exception e) {
+            error.showMessageBox("Old password is invalid\n" + e);
+        }
+        return val;
+    }
+
+
     //USE NUMBER FORMAT EXCEPTION ON VALIDATION!! (NOT YET)
-    
+
+
+
     public boolean withVal() {
         int acc_id = state.getAcc_ID();
         try {

@@ -3,11 +3,13 @@ package e.banking.View;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import e.banking.Controller.State;
+import e.banking.Controller.Validation;
 
 public class ChPassForm extends Form {
     
     State state = new State();
     MainForm main = new MainForm();
+    Validation validation = new Validation();
     
     JFrame frame = new JFrame("Change Password");
     
@@ -22,16 +24,35 @@ public class ChPassForm extends Form {
     JTextField txt1 = new JTextField();
     JTextField txt2 = new JTextField();
     JTextField txt3 = new JTextField();
+
+    public String getOldPassword(){
+        return txt1.getText();
+    }
+
+    public String getNewPassword(){
+        return txt2.getText();
+    }
+
+    public String confirmNewPass(){
+        return txt3.getText();
+    }
     
     public void button() {
         button.setFont(h3);
         button.setBounds(200,220,200,80);
-        
+
+        //changing old pass to new pass
         button.addActionListener((ActionEvent e) -> {
-            //submit
-            frame.dispose();
-            
-            main.view();
+            if(validation.OldPass(state.getAcc_ID(),getOldPassword()) && validation.ConfirmNewPass(confirmNewPass(),getNewPassword()) ){
+                validation.updatePass(state.getAcc_ID(),getNewPassword());
+
+                System.out.println(getNewPassword());
+                System.out.println(state.getAcc_ID());
+                frame.dispose();
+
+                main.view();
+            }
+
         });
     }
     
@@ -66,4 +87,6 @@ public class ChPassForm extends Form {
         txtfield();
         button();
     }
+
+
 }

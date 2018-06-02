@@ -3,11 +3,13 @@ package e.banking.View;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import e.banking.Controller.State;
+import e.banking.Controller.Validation;
 
 public class ChPinForm extends Form {
 
     State state = new State();
     MainForm main = new MainForm();
+    Validation validation = new Validation();
     
     JFrame frame = new JFrame("Change PIN");
     
@@ -22,16 +24,35 @@ public class ChPinForm extends Form {
     JTextField txt1 = new JTextField();
     JTextField txt2 = new JTextField();
     JTextField txt3 = new JTextField();
-    
+
+    public int getOldPIN(){
+        return Integer.parseInt(txt1.getText());
+    }
+
+    public String getNewPIN(){
+        return txt2.getText();
+    }
+
+    public String getconfirmPIN(){
+        return txt3.getText();
+    }
+
+
     public void button() {
         button.setFont(h3);
         button.setBounds(220,220,200,80);
         
         button.addActionListener((ActionEvent e) -> {
             //submit
-            frame.dispose();
-            
-            main.view();
+            if(validation.ConfirmNewPIN(getNewPIN(),getconfirmPIN()) && validation.OldPIN(state.getAcc_ID(),getOldPIN())){
+                validation.updatePIN(state.getAcc_ID(),Integer.parseInt(getNewPIN()));
+
+                frame.dispose();
+
+                main.view();
+            }
+
+
         });
     }
     
