@@ -4,6 +4,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import e.banking.Controller.State;
 import e.banking.Controller.Validation;
+<<<<<<< HEAD
+=======
+
+>>>>>>> cfce9cb1187e51e154c5509d7b10066098fd382d
 
 public class PINForm extends Form {
     
@@ -21,6 +25,9 @@ public class PINForm extends Form {
     
     JButton button1 = new JButton("Submit");
     
+    Validation val = new Validation();
+
+    
     public void setting() {
         
         label1.setBounds(40,40,200,25);
@@ -32,6 +39,10 @@ public class PINForm extends Form {
         return Integer.parseInt(txt1.getText());
     }
     
+    public String getPin(){
+        return txt1.getText();
+    }
+    
     public void button() {
         button1.setFont(h3);
         button1.setBounds(100,100,200,50);
@@ -39,9 +50,15 @@ public class PINForm extends Form {
         button1.addActionListener((ActionEvent e) -> {
             //validation
 
+
+
+
+
+
+            if (val.pinVal(Integer.parseInt(getPin()))) {
                 dialog.dispose();
                 main.view();
-
+            }   
 
         });
     }

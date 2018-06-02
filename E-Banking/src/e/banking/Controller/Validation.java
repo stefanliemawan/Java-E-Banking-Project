@@ -2,7 +2,6 @@ package e.banking.Controller;
 
 import e.banking.Model.DatabaseSetup;
 import e.banking.View.ErrorMessage;
-import e.banking.Controller.State;
 
 public class Validation {
     
@@ -77,11 +76,15 @@ public class Validation {
 
 
 
-    public boolean withVal() {
+
+
+
+    public boolean withVal(double withdraw) {
+
         int acc_id = state.getAcc_ID();
         try {
-            //do transaction, check balance, minus balance
-            
+            if (withdraw > 0 && db.selectBalance(db.selectBalanceId(acc_id)) >= withdraw) val = true;
+            else val = false;
         }catch(Exception e) {
             error.showMessageBox("Withdrawal Error\n" + e);
         }
@@ -94,6 +97,16 @@ public class Validation {
             else val = false;
         }catch (Exception e) { 
             error.showMessageBox("Login Error, please check your username and password\n" + e);
+        }
+        return val;
+    }
+    
+    public boolean pinVal(int pin) {
+        try {
+            if (db.selectPin(state.getAcc_ID()) == pin) val = true;
+            else val = false;
+        }catch (Exception e) { 
+            error.showMessageBox("Pin Confirmation Error, please check your pin" + e);
         }
         return val;
     }
@@ -114,6 +127,16 @@ public class Validation {
             else val = false;
         }catch (Exception e) {
             error.showMessageBox("Register Error, please check your password and PIN\n" + e);
+        }
+        return val;
+    }
+    
+    public boolean transVal(int toAcc_id){
+        try {
+            if (db.searchtoAccId(toAcc_id)) val = true;
+            else val = false;
+        }catch (Exception e) {
+            error.showMessageBox("Transfer Error\n" + e);
         }
         return val;
     }

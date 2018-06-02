@@ -11,10 +11,8 @@ public class EBanking {
             cont.start();
 
             View view = new View();
-            view.startgui();
-        
-        
-        
+            view.startgui();  
+
     }
     
 }

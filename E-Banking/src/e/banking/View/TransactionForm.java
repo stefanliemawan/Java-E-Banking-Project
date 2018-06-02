@@ -2,6 +2,7 @@ package e.banking.View;
 
 import javax.swing.*;
 import e.banking.Controller.State;
+import e.banking.Controller.Validation;
 
 public class TransactionForm extends Form {
     
@@ -22,6 +23,9 @@ public class TransactionForm extends Form {
     
     JButton button1 = new JButton("Submit");
     
+    Validation val = new Validation();
+    // Validation = val.transVal(Integer.parseInt(get_toAccid()));
+    
     public void label() {
         super.setLabel(label1,1);
         super.setLabel(label2,2);
@@ -30,6 +34,14 @@ public class TransactionForm extends Form {
     public void txtfield() {
         super.setTextField(txt1,1);
         super.setTextField(txt2,2);
+    }
+    
+    public String get_toAccid() {
+        return txt1.getText();
+    }
+    
+    public double getAmount(){
+        return Double.parseDouble(txt2.getText());
     }
     
     public void panel() {
@@ -49,6 +61,5 @@ public class TransactionForm extends Form {
         label();
         txtfield();
         panel();
-    }
-    
+    }  
 }

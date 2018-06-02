@@ -221,4 +221,58 @@ public class DatabaseSetup {
         return PIN;
     }
     
+    public int selectPin(int acc_id) {
+        int pin = 0;
+        connectDB();
+        try {
+            query = "SELECT pin FROM ACCOUNT WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next()) 
+            pin = rs.getInt("pin");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting Pin from Account Table, " + e);
+        }
+        return pin;
+    }
+    
+    public int selectBalanceId(int acc_id) {
+        int balanceid = 0;
+        connectDB();
+        try {
+            query = "SELECT balance_id FROM account WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next()) 
+            balanceid = rs.getInt("balance_id");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting balance_id from Account Table, " + e);
+        }
+        return balanceid;
+    }
+    
+    public double selectBalance(int bal_id) {
+        double balance = 0;
+        connectDB();
+        try {
+            query = "SELECT balance FROM BALANCE WHERE balance_id ="+bal_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next()) 
+            balance = rs.getDouble("balance");
+        }catch (SQLException e) {
+            error.showMessageBox("Error when selecting Password from Balance Table, " + e);
+        }
+        return balance;
+    }
+    
+    public boolean searchtoAccId(int acc_id) {
+        connectDB();
+        try {
+            query = "SELECT * FROM account WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next()) 
+            return true;
+        }catch (SQLException e){
+            error.showMessageBox("Error to Account ID not found, " + e);
+        }
+        return false;
+    }
 }
