@@ -3,6 +3,7 @@ package e.banking.View;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import e.banking.Controller.Validation;
 
 public class Form {
     
@@ -54,7 +55,6 @@ public class Form {
         button.addActionListener((ActionEvent e) -> {
             //submit
             frame.dispose();
-            
             pin.view();
         });
         return button;

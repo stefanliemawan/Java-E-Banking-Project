@@ -4,8 +4,8 @@ public class View {
     
     public void startgui(){
         
-//        LoginForm login = new LoginForm();
-//        login.view();
+        LoginForm login = new LoginForm();
+        login.view();
 
         MainForm main = new MainForm();
         main.view();

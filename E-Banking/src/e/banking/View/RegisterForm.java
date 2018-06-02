@@ -77,7 +77,7 @@ public class RegisterForm extends Form {
                 confirm.view();
                 confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());
             }
-               
+            
         });
     }
     
@@ -101,8 +101,7 @@ public class RegisterForm extends Form {
         setting();
         panel();
         button();
-        
-        
+
     }
     
 }

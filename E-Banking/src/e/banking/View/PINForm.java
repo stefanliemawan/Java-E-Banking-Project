@@ -3,6 +3,8 @@ package e.banking.View;
 import java.awt.event.*;
 import javax.swing.*;
 import e.banking.Controller.State;
+import e.banking.Controller.Validation;
+
 
 public class PINForm extends Form {
     
@@ -19,6 +21,9 @@ public class PINForm extends Form {
     
     JButton button1 = new JButton("Submit");
     
+    Validation val = new Validation();
+
+    
     public void setting() {
         
         label1.setBounds(40,40,200,25);
@@ -32,8 +37,10 @@ public class PINForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //validation
-            dialog.dispose();
-            main.view();
+            if (val.pinVal(Integer.parseInt(getPin()))) {
+                dialog.dispose();
+                main.view();
+            }   
         });
     }
     
@@ -64,5 +71,9 @@ public class PINForm extends Form {
         setting();
         panel();
         dialog();
+    }
+    
+    public String getPin(){
+        return txt1.getText();
     }
 }
