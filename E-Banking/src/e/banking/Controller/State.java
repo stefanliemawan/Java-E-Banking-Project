@@ -3,7 +3,7 @@ package e.banking.Controller;
 public class State {
     
     private static String state;
-    private int acc_id;
+    private static int acc_id;
     
     public void changeState(String statenow) {
         state = statenow;

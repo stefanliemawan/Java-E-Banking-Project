@@ -7,8 +7,8 @@ public class View {
         LoginForm login = new LoginForm();
         login.view();
 
-        MainForm main = new MainForm();
-        main.view();
+//        MainForm main = new MainForm();
+//        main.view();
 
     }
     

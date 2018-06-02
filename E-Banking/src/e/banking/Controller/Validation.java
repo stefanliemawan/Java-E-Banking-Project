@@ -2,7 +2,6 @@ package e.banking.Controller;
 
 import e.banking.Model.DatabaseSetup;
 import e.banking.View.ErrorMessage;
-import e.banking.Controller.State;
 
 public class Validation {
     
@@ -36,9 +35,8 @@ public class Validation {
     }
     
     public boolean pinVal(int pin) {
-        int acc_id = state.getAcc_ID();
         try {
-            if (db.selectPin(acc_id) == pin) val = true;
+            if (db.selectPin(state.getAcc_ID()) == pin) val = true;
             else val = false;
         }catch (Exception e) { 
             error.showMessageBox("Pin Confirmation Error, please check your pin" + e);

@@ -31,6 +31,10 @@ public class PINForm extends Form {
         txt1.setBounds(160,40,200,25);
     }
     
+    public String getPin(){
+        return txt1.getText();
+    }
+    
     public void button() {
         button1.setFont(h3);
         button1.setBounds(100,100,200,50);
@@ -71,9 +75,5 @@ public class PINForm extends Form {
         setting();
         panel();
         dialog();
-    }
-    
-    public String getPin(){
-        return txt1.getText();
     }
 }

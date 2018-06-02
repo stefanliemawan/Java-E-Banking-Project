@@ -17,7 +17,7 @@ public class DatabaseSetup {
     private String query = null;
     private String url = "jdbc:mysql://localhost/ebanking?autoReconnect=true&useSSL=false";
     private String username = "root";
-    private String password = "lala";
+    private String password = "";
     
     
     ErrorMessage error = new ErrorMessage();
