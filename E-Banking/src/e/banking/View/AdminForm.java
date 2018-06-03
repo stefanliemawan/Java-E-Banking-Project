@@ -1,8 +1,10 @@
 package e.banking.View;
 
 import e.banking.Controller.State;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class AdminForm extends Form {
     

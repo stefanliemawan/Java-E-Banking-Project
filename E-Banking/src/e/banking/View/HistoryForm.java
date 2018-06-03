@@ -1,7 +1,12 @@
 package e.banking.View;
 
 import e.banking.Controller.State;
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 
 public class HistoryForm extends Form {
 

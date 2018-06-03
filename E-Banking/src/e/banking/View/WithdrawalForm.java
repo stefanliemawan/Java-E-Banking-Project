@@ -1,8 +1,12 @@
 package e.banking.View;
 
 import e.banking.Controller.State;
-import javax.swing.*;
 import e.banking.Controller.Validation;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class WithdrawalForm extends Form {
     
@@ -39,7 +43,7 @@ public class WithdrawalForm extends Form {
         panel.add(label1);
         panel.add(txt1);
         panel.add(button1);
-        panel.add(super.createSubmitBtn(frame, pin));
+        panel.add(super.createSubmitBtn(frame, pin,val.withVal(Double.parseDouble(getWithdraw()))));
         panel.add(super.createBackBtn(frame,main));
     }
    

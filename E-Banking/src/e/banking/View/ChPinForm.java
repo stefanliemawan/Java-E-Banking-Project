@@ -1,9 +1,13 @@
 package e.banking.View;
 
 import java.awt.event.ActionEvent;
-import javax.swing.*;
 import e.banking.Controller.State;
 import e.banking.Controller.Validation;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 public class ChPinForm extends Form {
 
@@ -21,9 +25,9 @@ public class ChPinForm extends Form {
     JLabel label2 = new JLabel("New PIN                ");
     JLabel label3 = new JLabel("Confirmation           ");
     
-    JTextField txt1 = new JTextField();
-    JTextField txt2 = new JTextField();
-    JTextField txt3 = new JTextField();
+    JPasswordField txt1 = new JPasswordField();
+    JPasswordField txt2 = new JPasswordField();
+    JPasswordField txt3 = new JPasswordField();
 
     public int getOldPIN(){
         return Integer.parseInt(txt1.getText());

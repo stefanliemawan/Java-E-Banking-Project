@@ -5,7 +5,12 @@ import e.banking.Controller.State;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class LoginForm extends Form {
     
@@ -24,7 +29,7 @@ public class LoginForm extends Form {
     JLabel label2 = new JLabel("Password    ");
     
     JTextField txt1 = new JTextField();
-    JTextField txt2 = new JTextField();
+    JPasswordField txt2 = new JPasswordField();
     
     JButton button1 = new JButton("Submit");
     JButton button2 = new JButton("New? Register Here");

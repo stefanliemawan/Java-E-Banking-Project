@@ -1,8 +1,12 @@
 package e.banking.View;
 
-import javax.swing.*;
 import e.banking.Controller.State;
 import e.banking.Controller.Validation;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class TransactionForm extends Form {
     
@@ -50,7 +54,7 @@ public class TransactionForm extends Form {
         panel.add(txt1);
         panel.add(txt2);
         panel.add(button1);
-        panel.add(super.createSubmitBtn(frame,pin));
+        panel.add(super.createSubmitBtn(frame,pin,val.transVal(Integer.parseInt(get_toAccid()))));
         panel.add(super.createBackBtn(frame,main));
     }
     

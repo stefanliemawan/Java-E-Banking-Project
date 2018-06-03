@@ -2,8 +2,12 @@ package e.banking.View;
 
 import e.banking.Controller.Validation;
 import e.banking.Controller.State;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 
 public class RegisterConfirmationForm extends Form {
@@ -32,8 +36,8 @@ public class RegisterConfirmationForm extends Form {
     JLabel label15 = new JLabel();
     JLabel label17 = new JLabel();
     
-    JTextField txt1 = new JTextField();
-    JTextField txt2 = new JTextField();
+    JPasswordField txt1 = new JPasswordField();
+    JPasswordField txt2 = new JPasswordField();
     
     JButton button1 = new JButton("Submit");
     

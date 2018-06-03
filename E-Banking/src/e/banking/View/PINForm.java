@@ -1,19 +1,19 @@
 package e.banking.View;
 
-import java.awt.event.*;
-import javax.swing.*;
 import e.banking.Controller.State;
 import e.banking.Controller.Validation;
-<<<<<<< HEAD
-=======
-
->>>>>>> cfce9cb1187e51e154c5509d7b10066098fd382d
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 public class PINForm extends Form {
     
     State state = new State();
     MainForm main = new MainForm();
-    Validation validation = new Validation();
+    Validation val = new Validation();
     
     JDialog dialog = new JDialog();
     
@@ -21,12 +21,9 @@ public class PINForm extends Form {
     
     JLabel label1 = new JLabel("Enter PIN");
     
-    JTextField txt1 = new JTextField();
+    JPasswordField txt1 = new JPasswordField();
     
     JButton button1 = new JButton("Submit");
-    
-    Validation val = new Validation();
-
     
     public void setting() {
         
@@ -49,12 +46,6 @@ public class PINForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //validation
-
-
-
-
-
-
             if (val.pinVal(Integer.parseInt(getPin()))) {
                 dialog.dispose();
                 main.view();

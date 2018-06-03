@@ -1,9 +1,14 @@
 package e.banking.View;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import e.banking.Controller.Validation;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 
 public class Form {
     
@@ -47,15 +52,17 @@ public class Form {
         return button;
     }
     
-    public JButton createSubmitBtn(JFrame frame, PINForm pin) {
+    public JButton createSubmitBtn(JFrame frame, PINForm pin, boolean validation) {
         JButton button = new JButton("Submit");
         button.setFont(h3);
         button.setBounds(200,180,200,80);
         
         button.addActionListener((ActionEvent e) -> {
             //submit
-            frame.dispose();
-            pin.view();
+            if (!validation){
+                frame.dispose();
+                pin.view();
+            }
         });
         return button;
     }
