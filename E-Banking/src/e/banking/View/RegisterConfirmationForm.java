@@ -14,6 +14,7 @@ public class RegisterConfirmationForm extends Form {
     
     State state = new State();
     Validation val = new Validation();
+    ErrorMessage error = new ErrorMessage();
     
     JDialog dialog = new JDialog();
     
@@ -108,8 +109,12 @@ public class RegisterConfirmationForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            val.finalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID());
-            dialog.dispose();
+            try {
+                if(val.finalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID()))
+                dialog.dispose();
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            }
         });
     }
     

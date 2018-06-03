@@ -15,10 +15,9 @@ public class DatabaseSetup {
     private Statement stm = null;
     private ResultSet rs = null; 
     private String query = null;
-    private String url = "jdbc:mysql://localhost/ebanking";
+    private String url = "jdbc:mysql://localhost/ebanking?verifyServerCertificate=false&useSSL=true";
     private String username = "root";
-    private String password = "";
-    
+    private String password = "lala";
     
     ErrorMessage error = new ErrorMessage();
     
@@ -54,35 +53,6 @@ public class DatabaseSetup {
             return false;
         }
     }
-
-
-    //changing to new password
-    public boolean ChangePassword(int acc_id, String password){
-        connectDB();
-        try{
-            query = "UPDATE account SET password =\""+password+"\" where acc_id ="+acc_id+";";
-            stm.executeUpdate(query);
-            return true;
-        }catch(SQLException e){
-            error.showMessageBox("Error when updating password\n" + e);
-            return false;
-        }
-    }
-
-    //changing to new pin
-        public boolean ChangePIN(int acc_id, int pin){
-        connectDB();
-        try{
-            query = "UPDATE account SET pin = "+pin+" where acc_id =" +acc_id+";";
-            stm.executeUpdate(query);
-            return true;
-        }catch(SQLException e){
-            error.showMessageBox("Error when updating PIN\n" + e);
-            return false;
-        }
-    }
-
-
 
     public boolean insertInfo(String fname, String lname, String dob, String phone, String address) {
         connectDB();
@@ -191,6 +161,32 @@ public class DatabaseSetup {
         return dob;
     }
     
+    //changing to new password
+    public boolean ChangePassword(int acc_id, String password){
+        connectDB();
+        try{
+            query = "UPDATE account SET password =\""+password+"\" where acc_id ="+acc_id+";";
+            stm.executeUpdate(query);
+            return true;
+        }catch(SQLException e){
+            error.showMessageBox("Error when updating password\n" + e);
+            return false;
+        }
+    }
+
+    //changing to new pin
+        public boolean ChangePIN(int acc_id, int pin){
+        connectDB();
+        try{
+            query = "UPDATE account SET pin = "+pin+" where acc_id =" +acc_id+";";
+            stm.executeUpdate(query);
+            return true;
+        }catch(SQLException e){
+            error.showMessageBox("Error when updating PIN\n" + e);
+            return false;
+        }
+    }
+    
     public String selectPassword(int acc_id) {
         String password = null;
         connectDB();
@@ -204,9 +200,7 @@ public class DatabaseSetup {
         }
         return password;
     }
-
-
-
+    
     public int selectPIN(int acc_id) {
         int PIN = 0;
         connectDB();
@@ -219,20 +213,6 @@ public class DatabaseSetup {
             error.showMessageBox("Error when selecting pin from Account Table, " + e);
         }
         return PIN;
-    }
-    
-    public int selectPin(int acc_id) {
-        int pin = 0;
-        connectDB();
-        try {
-            query = "SELECT pin FROM ACCOUNT WHERE acc_id ="+acc_id+";";
-            rs = stm.executeQuery(query);
-            while(rs.next()) 
-            pin = rs.getInt("pin");
-        }catch (SQLException e) {
-            error.showMessageBox("Error when selecting Pin from Account Table, " + e);
-        }
-        return pin;
     }
     
     public int selectBalanceId(int acc_id) {
@@ -253,12 +233,12 @@ public class DatabaseSetup {
         double balance = 0;
         connectDB();
         try {
-            query = "SELECT balance FROM BALANCE WHERE balance_id ="+bal_id+";";
+            query = "SELECT balance FROM Balance WHERE balance_id ="+bal_id+";";
             rs = stm.executeQuery(query);
             while(rs.next()) 
-            balance = rs.getDouble("balance");
+                balance = rs.getDouble("balance");
         }catch (SQLException e) {
-            error.showMessageBox("Error when selecting Password from Balance Table, " + e);
+            error.showMessageBox("Error when selecting balance from Balance Table, " + e);
         }
         return balance;
     }
@@ -269,7 +249,7 @@ public class DatabaseSetup {
             query = "SELECT * FROM account WHERE acc_id ="+acc_id+";";
             rs = stm.executeQuery(query);
             while(rs.next()) 
-            return true;
+                return true;
         }catch (SQLException e){
             error.showMessageBox("Error to Account ID not found, " + e);
         }

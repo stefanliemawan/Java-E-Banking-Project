@@ -11,6 +11,7 @@ import javax.swing.JPasswordField;
 
 public class PINForm extends Form {
     
+    ErrorMessage error = new ErrorMessage();
     State state = new State();
     MainForm main = new MainForm();
     Validation val = new Validation();
@@ -46,11 +47,14 @@ public class PINForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //validation
-            if (val.pinVal(Integer.parseInt(getPin()))) {
-                dialog.dispose();
-                main.view();
-            }   
-
+            try {
+                if (val.pinVal(Integer.parseInt(getPin()))) {
+                    dialog.dispose();
+                    main.view();
+                }   
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            }
         });
     }
     

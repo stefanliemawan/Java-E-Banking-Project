@@ -13,13 +13,14 @@ public class ChPassForm extends Form {
     
     State state = new State();
     MainForm main = new MainForm();
-    Validation validation = new Validation();
+    Validation val = new Validation();
+    ErrorMessage error = new ErrorMessage();
     
     JFrame frame = new JFrame("Change Password");
     
     JPanel panel = new JPanel();
     
-    JButton button = new JButton("Submit");
+    JButton button = super.createSubmitBtn();
     
     JLabel label1 = new JLabel("Old Password                ");
     JLabel label2 = new JLabel("New Password                ");
@@ -42,19 +43,18 @@ public class ChPassForm extends Form {
     }
     
     public void button() {
-        button.setFont(h3);
         button.setBounds(200,220,200,80);
 
         //changing old pass to new pass
         button.addActionListener((ActionEvent e) -> {
-            if(validation.OldPass(state.getAcc_ID(),getOldPassword()) && validation.ConfirmNewPass(confirmNewPass(),getNewPassword()) ){
-                validation.updatePass(state.getAcc_ID(),getNewPassword());
-
-                System.out.println(getNewPassword());
-                System.out.println(state.getAcc_ID());
-                frame.dispose();
-
-                main.view();
+            try {
+                if(val.confirmOldPass(state.getAcc_ID(),getOldPassword()) && val.confirmNewPass(confirmNewPass(),getNewPassword()) ){
+                    val.updatePass(state.getAcc_ID(),getNewPassword());
+                    frame.dispose();
+                    main.view();
+                }
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
             }
         });
     }

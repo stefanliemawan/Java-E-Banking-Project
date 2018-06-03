@@ -16,6 +16,7 @@ public class RegisterForm extends Form {
     RegisterConfirmationForm confirm = new RegisterConfirmationForm();
     Validation val = new Validation();
     MainForm main = new MainForm();
+    ErrorMessage error = new ErrorMessage();
     
     JFrame frame = new JFrame("Register");
     
@@ -76,12 +77,15 @@ public class RegisterForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (val.regisVal(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
-                frame.dispose();
-                confirm.view();
-                confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());
+            try {
+                if (val.regisVal(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
+                    frame.dispose();
+                    confirm.view();
+                    confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());
+                }
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
             }
-            
         });
     }
     

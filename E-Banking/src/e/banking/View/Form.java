@@ -1,5 +1,6 @@
 package e.banking.View;
 
+import e.banking.Controller.Validation;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -52,18 +53,11 @@ public class Form {
         return button;
     }
     
-    public JButton createSubmitBtn(JFrame frame, PINForm pin, boolean validation) {
+    public JButton createSubmitBtn() {
         JButton button = new JButton("Submit");
         button.setFont(h3);
         button.setBounds(200,180,200,80);
         
-        button.addActionListener((ActionEvent e) -> {
-            //submit
-            if (!validation){
-                frame.dispose();
-                pin.view();
-            }
-        });
         return button;
     }
     

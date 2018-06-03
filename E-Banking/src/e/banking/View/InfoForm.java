@@ -1,6 +1,7 @@
 package e.banking.View;
 
 import e.banking.Controller.State;
+import e.banking.Controller.Validation;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,18 +13,19 @@ public class InfoForm extends Form {
     State state = new State();
     HistoryForm history = new HistoryForm();
     MainForm main = new MainForm();
+    Validation val = new Validation();
     
     JFrame frame = new JFrame("Info");
     
     JPanel panel = new JPanel();
     
-    JLabel label1 = new JLabel("Account Number      ");
+    JLabel label1 = new JLabel("Account ID          ");
     JLabel label2 = new JLabel("Account Balance     ");
     JLabel label3 = new JLabel("PIN                 ");
     
-    JLabel label11 = new JLabel("//Acount Number");
-    JLabel label12 = new JLabel("//Account Balance");
-    JLabel label13 = new JLabel("******");
+    JLabel label11 = new JLabel(Integer.toString(state.getAcc_ID()));
+    JLabel label12 = new JLabel(Double.toString(val.getAccInfo()));
+    JLabel label13 = new JLabel("*************");
     
     JButton button1 = new JButton("History");
     

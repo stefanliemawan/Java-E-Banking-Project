@@ -14,12 +14,13 @@ public class ChPinForm extends Form {
     State state = new State();
     MainForm main = new MainForm();
     Validation validation = new Validation();
+    ErrorMessage error = new ErrorMessage();
     
     JFrame frame = new JFrame("Change PIN");
     
     JPanel panel = new JPanel();
     
-    JButton button = new JButton("Submit");
+    JButton button = super.createSubmitBtn();
     
     JLabel label1 = new JLabel("Old PIN                ");
     JLabel label2 = new JLabel("New PIN                ");
@@ -43,20 +44,19 @@ public class ChPinForm extends Form {
 
 
     public void button() {
-        button.setFont(h3);
         button.setBounds(220,220,200,80);
         
         button.addActionListener((ActionEvent e) -> {
             //submit
-            if(validation.ConfirmNewPIN(getNewPIN(),getconfirmPIN()) && validation.OldPIN(state.getAcc_ID(),getOldPIN())){
-                validation.updatePIN(state.getAcc_ID(),Integer.parseInt(getNewPIN()));
-
-                frame.dispose();
-
-                main.view();
+            try {
+                if(validation.confirmNewPIN(getNewPIN(),getconfirmPIN()) && validation.confirmOldPIN(state.getAcc_ID(),getOldPIN())){
+                    validation.updatePIN(state.getAcc_ID(),Integer.parseInt(getNewPIN()));
+                    frame.dispose();
+                    main.view();
+                }
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
             }
-
-
         });
     }
     
