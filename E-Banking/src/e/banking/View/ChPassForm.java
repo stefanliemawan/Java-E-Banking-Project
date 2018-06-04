@@ -47,14 +47,12 @@ public class ChPassForm extends Form {
 
         //changing old pass to new pass
         button.addActionListener((ActionEvent e) -> {
-            try {
-                if(val.confirmOldPass(state.getAcc_ID(),getOldPassword()) && val.confirmNewPass(confirmNewPass(),getNewPassword()) ){
-                    val.updatePass(state.getAcc_ID(),getNewPassword());
-                    frame.dispose();
-                    main.view();
-                }
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            if(val.confirmOldPass(state.getAcc_ID(),getOldPassword()) && val.confirmNewPass(confirmNewPass(),getNewPassword()) == true) {
+                val.updatePass(state.getAcc_ID(),getNewPassword());
+                frame.dispose();
+                main.view();
+            }else {
+                error.showMessageBox("Some of your input are not valid, please re-check\n");
             }
         });
     }

@@ -77,14 +77,13 @@ public class RegisterForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            try {
-                if (val.regisVal(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())){
-                    frame.dispose();
-                    confirm.view();
-                    confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());
-                }
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            if (val.regisVal(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress())) {
+                    
+                frame.dispose();
+                confirm.view();
+                confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());        
+            }else {
+                error.showMessageBox("NFE");
             }
         });
     }

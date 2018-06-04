@@ -47,13 +47,11 @@ public class PINForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //validation
-            try {
-                if (val.pinVal(Integer.parseInt(getPin()))) {
-                    dialog.dispose();
-                    main.view();
-                }   
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            if (val.pinVal(Integer.parseInt(getPin()))) {
+                dialog.dispose();
+                main.view();
+            }else {
+                error.showMessageBox("Some of your input are not valid, please re-check\n");
             }
         });
     }

@@ -7,11 +7,11 @@ public class EBanking {
     
     public static void main(String[] args) {
             
-//            LoginForm login = new LoginForm();
-//            login.view();
+            LoginForm login = new LoginForm();
+            login.view();
             
-            MainForm main = new MainForm();
-            main.view();
+//            MainForm main = new MainForm();
+//            main.view();
             
     }
     

@@ -109,12 +109,9 @@ public class RegisterConfirmationForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            try {
-                if(val.finalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID()))
+            if(val.finalRegisVal(generateAcc_ID(), getPass(), getPIN(), val.getLastInfo_ID(), val.getLastBalance_ID()))
                 dialog.dispose();
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
-            }
+            else error.showMessageBox("Some of your input are not valid, please re-check\n");
         });
     }
     

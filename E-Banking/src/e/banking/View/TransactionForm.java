@@ -50,14 +50,10 @@ public class TransactionForm extends Form {
     public void button() {
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            try {
-                if (val.transVal(Integer.parseInt(get_toAccid()))) {
-                    frame.dispose();
-                    pin.view();
-                }
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
-            }
+            if (val.transVal(Integer.parseInt(get_toAccid()))) {
+                frame.dispose();
+                pin.view();
+            }else error.showMessageBox("Some of your input are not valid, please re-check\n");
         });
     }
     

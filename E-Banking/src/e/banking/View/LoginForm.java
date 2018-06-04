@@ -58,15 +58,13 @@ public class LoginForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            try {
-                if (validation.loginVal(Integer.parseInt(getAcc_ID()),getPassword())) {
-                    state.setAcc_ID(getAcc_ID());
-
-                    frame.dispose();
-                    main.view();
-                }
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            if (validation.loginVal(state.getAcc_ID(),getPassword())) {
+                state.setAcc_ID(getAcc_ID());
+                
+                frame.dispose();
+                main.view();
+            }else {
+                error.showMessageBox("Some of your input are not valid, please re-check\n");
             }
             
         });

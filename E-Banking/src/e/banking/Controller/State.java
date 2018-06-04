@@ -6,7 +6,6 @@ public class State {
 
     private static int acc_id;
 
-    
     public void changeState(String statenow) {
         state = statenow;
     }
@@ -16,6 +15,7 @@ public class State {
     }
     
     public int getAcc_ID() {
+        System.out.println(acc_id);
         return acc_id;
     }
 }

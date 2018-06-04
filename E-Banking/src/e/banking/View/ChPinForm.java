@@ -48,14 +48,12 @@ public class ChPinForm extends Form {
         
         button.addActionListener((ActionEvent e) -> {
             //submit
-            try {
-                if(validation.confirmNewPIN(getNewPIN(),getconfirmPIN()) && validation.confirmOldPIN(state.getAcc_ID(),getOldPIN())){
-                    validation.updatePIN(state.getAcc_ID(),Integer.parseInt(getNewPIN()));
-                    frame.dispose();
-                    main.view();
-                }
-            }catch (NumberFormatException c) {
-                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            if(validation.confirmNewPIN(getNewPIN(),getconfirmPIN()) && validation.confirmOldPIN(state.getAcc_ID(),getOldPIN())){
+                validation.updatePIN(state.getAcc_ID(),Integer.parseInt(getNewPIN()));
+                frame.dispose();
+                main.view();
+            }else {
+                error.showMessageBox("Some of your input are not valid, please re-check\n");
             }
         });
     }
