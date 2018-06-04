@@ -17,7 +17,7 @@ public class DatabaseSetup {
     private String query = null;
     private String url = "jdbc:mysql://localhost/ebanking?verifyServerCertificate=false&useSSL=true";
     private String username = "root";
-    private String password = "lala";
+    private String password = "";
     
     ErrorMessage error = new ErrorMessage();
     
@@ -194,7 +194,7 @@ public class DatabaseSetup {
             query = "SELECT password FROM ACCOUNT WHERE acc_id ="+acc_id+";";
             rs = stm.executeQuery(query);
             while(rs.next()) 
-            password = rs.getString("password");
+                password = rs.getString("password");
         }catch (SQLException e) {
             error.showMessageBox("Error when selecting Password from Account Table, " + e);
         }
@@ -250,6 +250,57 @@ public class DatabaseSetup {
             rs = stm.executeQuery(query);
             while(rs.next()) 
                 return true;
+        }catch (SQLException e){
+            error.showMessageBox("Error to Account ID not found, " + e);
+        }
+        return false;
+    }
+    
+    public boolean withdraw(int acc_id, double withdraw){
+        connectDB();
+
+        try {
+            int balanceId = 0;
+
+            query = "SELECT * FROM account WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+                balanceId = rs.getInt("balance_id");
+            rs.close(); 
+                        
+            query = "UPDATE balance SET balance=balance-"+ withdraw +"  WHERE balance_id="+ balanceId +";";
+            stm.executeUpdate(query);
+            
+        }catch (SQLException e){
+            error.showMessageBox("Error to Account ID not found, " + e);
+        }
+        return false;
+    }
+    
+    public boolean trans(int acc_id, double amount, int toacc_id){
+        connectDB();
+
+        try {
+            int balanceId = 0;
+
+            query = "SELECT * FROM account WHERE acc_id ="+acc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+                balanceId = rs.getInt("balance_id");
+            rs.close(); 
+            
+            query = "UPDATE balance SET balance = balance-"+ amount +"  WHERE balance_id ="+ balanceId +";";
+            stm.executeUpdate(query);
+ 
+            query = "SELECT * FROM account WHERE acc_id ="+toacc_id+";";
+            rs = stm.executeQuery(query);
+            while(rs.next())
+                balanceId = rs.getInt("balance_id");
+            rs.close(); 
+            
+            query = "UPDATE balance SET balance = balance + "+ amount +"  WHERE balance_id ="+ balanceId +";";
+            stm.executeUpdate(query);
+            
         }catch (SQLException e){
             error.showMessageBox("Error to Account ID not found, " + e);
         }

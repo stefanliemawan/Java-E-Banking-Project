@@ -22,8 +22,15 @@ public class Validation {
         else return false;
     }
     
-    public boolean pinVal(int pin) {
-        if (db.selectPIN(state.getAcc_ID()) == pin) return true;
+    public boolean pinVal(int pin, double amount, int toacc_id) {
+        int acc_id = state.getAcc_ID();
+
+        if (db.selectPIN(state.getAcc_ID()) == pin){
+            if (state.getState().equalsIgnoreCase("Withdrawal")) db.withdraw(acc_id, amount);
+            else if(state.getState().equalsIgnoreCase("Transaction")) db.trans(acc_id, amount, toacc_id);
+            else error.showMessageBox("Form Source undefined...\n");
+            return true;
+        }
         else return false;
     }
     

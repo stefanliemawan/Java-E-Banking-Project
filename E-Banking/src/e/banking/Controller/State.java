@@ -10,6 +10,10 @@ public class State {
         state = statenow;
     }
     
+    public String getState(){
+        return state;
+    }
+            
     public void setAcc_ID(String id) {
         acc_id = Integer.parseInt(id);
     }

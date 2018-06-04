@@ -43,10 +43,14 @@ public class WithdrawalForm extends Form {
     public void button() {
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (val.withVal(Double.parseDouble(getWithdraw()))) {
-                frame.dispose();
-                pin.view();
-            }else error.showMessageBox("Some of your input are not valid, please re-check\n");
+            try {
+                if (val.withVal(Double.parseDouble(getWithdraw()))) {
+                    pin.view(Double.parseDouble(getWithdraw()), 0);
+                    frame.dispose();
+                }
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            }
         });
     }
     
