@@ -25,6 +25,9 @@ public class PINForm extends Form {
     JPasswordField txt1 = new JPasswordField();
     
     JButton button1 = new JButton("Submit");
+        
+    double amount = 0;
+    int toacc_id = 0;
     
     public void setting() {
         
@@ -47,9 +50,9 @@ public class PINForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //validation
-            if (val.pinVal(Integer.parseInt(getPin()))) {
-                dialog.dispose();
-                main.view();
+            if (val.pinVal(Integer.parseInt(getPin()), amount, toacc_id)) {
+                    dialog.dispose();
+                    main.view();
             }else {
                 error.showMessageBox("Some of your input are not valid, please re-check\n");
             }
@@ -73,9 +76,17 @@ public class PINForm extends Form {
         dialog.setLocationRelativeTo(null);
     }
     
-    public void view() {
-        state.changeState("PIN");
-        
+    public void setAmount(double value){
+        amount = value;
+    }
+    
+    public void settoacc_id(int value){
+        toacc_id = value;
+    }
+    
+    public void view(double value, int toaccid) {
+        setAmount(value);
+        settoacc_id(toaccid);        
         super.setLabel(label1,1);
         super.setTextField(txt1,1);
         

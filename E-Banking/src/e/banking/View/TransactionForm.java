@@ -43,17 +43,21 @@ public class TransactionForm extends Form {
         return txt1.getText();
     }
     
-    public double getAmount(){
-        return Double.parseDouble(txt2.getText());
+    public String getAmount(){
+        return txt2.getText();
     }
     
     public void button() {
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (val.transVal(Integer.parseInt(get_toAccid()))) {
-                frame.dispose();
-                pin.view();
-            }else error.showMessageBox("Some of your input are not valid, please re-check\n");
+            try {
+                if (val.transVal(Integer.parseInt(get_toAccid()))) {
+                    pin.view(Double.parseDouble(getAmount()), Integer.parseInt(get_toAccid()));
+                    frame.dispose();
+                }
+            }catch (NumberFormatException c) {
+                error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
+            }
         });
     }
     
