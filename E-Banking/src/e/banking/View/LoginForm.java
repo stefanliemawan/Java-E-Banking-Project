@@ -58,7 +58,7 @@ public class LoginForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //submit
-            if (validation.loginVal(state.getAcc_ID(),getPassword())) {
+            if (validation.loginVal(Integer.parseInt(getAcc_ID()),getPassword())) {
                 state.setAcc_ID(getAcc_ID());
                 
                 frame.dispose();

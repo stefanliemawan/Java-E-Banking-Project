@@ -10,45 +10,45 @@ import java.sql.Statement;
 
 
 public class DatabaseSetup {
-    
+
     private Connection conn = null;
     private Statement stm = null;
-    private ResultSet rs = null; 
+    private ResultSet rs = null;
     private String query = null;
-    private String url = "jdbc:mysql://localhost/ebanking?verifyServerCertificate=false&useSSL=true";
+    private String url = "jdbc:mysql://localhost/ebanking";
     private String username = "root";
-    private String password = "lala";
-    
+    private String password = "";
+
     ErrorMessage error = new ErrorMessage();
-    
-    public void connectDB(){
+
+    public void connectDB() {
         try {
-            conn = DriverManager.getConnection(url,username,password);
+            conn = DriverManager.getConnection(url, username, password);
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             error.showMessageBox("Error when connecting to database\n" + e);
         }
     }
-    
+
     public boolean insertAccount(int id, String pass, int pin, int info_id, int balance_id) {
         connectDB();
         try {
-            query = "INSERT INTO Account VALUES("+id+",\""+pass+"\","+pin+","+info_id+","+balance_id+");";
+            query = "INSERT INTO Account VALUES(" + id + ",\"" + pass + "\"," + pin + "," + info_id + "," + balance_id + ");";
             stm.execute(query);
             return true;
-        }catch (SQLException e) {
-            error.showMessageBox("Error when inserting into Account Table\n" + e +"\n"+query);
+        } catch (SQLException e) {
+            error.showMessageBox("Error when inserting into Account Table\n" + e + "\n" + query);
             return false;
         }
     }
-    
+
     public boolean insertBalance(double balance) {
         connectDB();
         try {
-            query = "INSERT INTO Balance VALUES(NULL,"+balance+");";
+            query = "INSERT INTO Balance VALUES(NULL," + balance + ");";
             stm.execute(query);
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             error.showMessageBox("Error when inserting into Balance Table\n" + e);
             return false;
         }
@@ -57,51 +57,51 @@ public class DatabaseSetup {
     public boolean insertInfo(String fname, String lname, String dob, String phone, String address) {
         connectDB();
         try {
-            query = "INSERT INTO Info VALUES(NULL,\""+fname+"\",\""+lname+"\",\""+dob+"\",\""+phone+"\",\""+address+"\");";
+            query = "INSERT INTO Info VALUES(NULL,\"" + fname + "\",\"" + lname + "\",\"" + dob + "\",\"" + phone + "\",\"" + address + "\");";
             stm.executeUpdate(query);
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             error.showMessageBox("Error when inserting into Info Table\n" + e);
             return false;
         }
     }
-    
+
     public boolean insertTransaction(int acc_id, int type_id, int quantity, String date) {
         connectDB();
         try {
-            query = "INSERT INTO Transaction VALUES(NULL,"+acc_id+","+type_id+",NULL,"+quantity+",\""+date+"\");";
+            query = "INSERT INTO Transaction VALUES(NULL," + acc_id + "," + type_id + ",NULL," + quantity + ",\"" + date + "\");";
             stm.execute(query);
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             error.showMessageBox("Error when inserting into Transaction Table\n" + e);
             return false;
         }
     }
-    
+
     public boolean insertTransactionTo(int acc_id, int type_id, int to_id, int quantity, String date) {
         connectDB();
         try {
-            query = "INSERT INTO Transaction VALUES(NULL,"+acc_id+","+type_id+","+to_id+","+quantity+",\""+date+"\");";
+            query = "INSERT INTO Transaction VALUES(NULL," + acc_id + "," + type_id + "," + to_id + "," + quantity + ",\"" + date + "\");";
             stm.execute(query);
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             error.showMessageBox("Error when inserting into Transaction Table\n" + e);
             return false;
         }
     }
-    
+
     public boolean insertType(String name) {
         connectDB();
         try {
-            query = "INSERT INTO Type VALUES(NULL,\""+name+"\");";
+            query = "INSERT INTO Type VALUES(NULL,\"" + name + "\");";
             stm.execute(query);
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             error.showMessageBox("Error when inserting into Type Table\n" + e);
             return false;
         }
     }
-    
+
     public int selectLastAcc_ID() {
         int result = 0;
         connectDB();
@@ -109,82 +109,101 @@ public class DatabaseSetup {
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             query = "SELECT acc_id from Account WHERE acc_id=(SELECT MAX(acc_id) FROM Account);";
             rs = stm.executeQuery(query);
-            while(rs.next())
-            result = rs.getInt("acc_id");
-        }catch (SQLException e) {
+            while (rs.next())
+                result = rs.getInt("acc_id");
+        } catch (SQLException e) {
             error.showMessageBox("Error when selecting acc_id from Account Table\n" + e);
         }
         return result;
     }
-    
-     public int selectLastInfo_ID() {
+
+    public int selectLastInfo_ID() {
         int result = 0;
         connectDB();
         try {
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             query = "SELECT info_id from Info WHERE info_id=(SELECT MAX(info_id) FROM Info);";
             rs = stm.executeQuery(query);
-            while(rs.next())
-            result = rs.getInt("info_id");
-        }catch (SQLException e) {
+            while (rs.next())
+                result = rs.getInt("info_id");
+        } catch (SQLException e) {
             error.showMessageBox("Error when selecting info_id from Info Table\n" + e);
         }
         return result;
     }
-     
-      public int selectLastBalance_ID() {
+
+    public int selectLastBalance_ID() {
         int result = 0;
         connectDB();
         try {
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             query = "SELECT balance_id from Balance WHERE balance_id=(SELECT MAX(balance_id) FROM Balance);";
             rs = stm.executeQuery(query);
-            while(rs.next())
-            result = rs.getInt("balance_id");
-        }catch (SQLException e) {
+            while (rs.next())
+                result = rs.getInt("balance_id");
+        } catch (SQLException e) {
             error.showMessageBox("Error when selecting balance_id from Balance Table\n" + e);
         }
         return result;
     }
-    
+
     public String selectLastDOB() {
         String dob = null;
         connectDB();
         try {
             query = "SELECT dob from Info WHERE info_id=(SELECT MAX(info_id) FROM Info);";
             rs = stm.executeQuery(query);
-            while(rs.next())
-            dob = rs.getString("dob");
-        }catch (SQLException e) {
+            while (rs.next())
+                dob = rs.getString("dob");
+        } catch (SQLException e) {
             error.showMessageBox("Error when selecting from DOB from Info Table\n" + e);
         }
         return dob;
     }
-    
+
     //changing to new password
-    public boolean ChangePassword(int acc_id, String password){
+    public boolean ChangePassword(int acc_id, String password) {
         connectDB();
-        try{
-            query = "UPDATE account SET password =\""+password+"\" where acc_id ="+acc_id+";";
+        try {
+            query = "UPDATE account SET password =\"" + password + "\" where acc_id =" + acc_id + ";";
             stm.executeUpdate(query);
             return true;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             error.showMessageBox("Error when updating password\n" + e);
             return false;
         }
     }
 
     //changing to new pin
-        public boolean ChangePIN(int acc_id, int pin){
+    public boolean ChangePIN(int acc_id, int pin) {
         connectDB();
-        try{
-            query = "UPDATE account SET pin = "+pin+" where acc_id =" +acc_id+";";
+        try {
+            query = "UPDATE account SET pin = " + pin + " where acc_id =" + acc_id + ";";
             stm.executeUpdate(query);
             return true;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             error.showMessageBox("Error when updating PIN\n" + e);
             return false;
         }
+    }
+
+    public String[][] transactionData(int acc_id) {
+        connectDB();
+        String info = null;
+        int i = 0;
+        String[][] data = new String[1000][1];
+        try {
+            query = "select * from transaction where acc_id = " + acc_id + ";";
+            rs = stm.executeQuery(query);
+            while (rs.next()){
+                info = (rs.getString(1) +" "+ rs.getString(2)+" "+ rs.getString(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
+                data[i][0] = info;
+                i++;}
+        } catch (SQLException e) {
+            error.showMessageBox("error when retrieving transaction" + e);
+        }
+        i=0;
+        return data;
     }
     
     public String selectPassword(int acc_id) {

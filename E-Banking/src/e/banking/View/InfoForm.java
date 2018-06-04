@@ -56,6 +56,9 @@ public class InfoForm extends Form {
         
         button1.addActionListener((ActionEvent e) -> {
             //history
+            history.dialog.dispose();
+            history.dialog.validate();
+            history.dialog.repaint();
             history.view();
         });   
     }
