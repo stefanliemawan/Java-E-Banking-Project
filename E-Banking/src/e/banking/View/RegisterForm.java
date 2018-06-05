@@ -83,7 +83,7 @@ public class RegisterForm extends Form {
                 confirm.view();
                 confirm.setText(getFirstName(),getLastName(),getDOB(),getPhone(),getAddress());        
             }else {
-                error.showMessageBox("NFE");
+                error.showMessageBox("Some of your input are not valid, please re-check\n");
             }
         });
     }

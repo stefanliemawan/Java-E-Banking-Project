@@ -26,8 +26,14 @@ public class Validation {
         int acc_id = state.getAcc_ID();
 
         if (db.selectPIN(state.getAcc_ID()) == pin){
-            if (state.getState().equalsIgnoreCase("Withdrawal")) db.withdraw(acc_id, amount);
-            else if(state.getState().equalsIgnoreCase("Transaction")) db.trans(acc_id, amount, toacc_id);
+            if (state.getState().equalsIgnoreCase("Withdrawal")){
+                db.withdraw(acc_id, amount);
+                db.insertHistoryWith(acc_id, amount);
+            }
+            else if(state.getState().equalsIgnoreCase("Transaction")){
+                db.trans(acc_id, amount, toacc_id);
+                db.insertHistoryTrans(acc_id, amount, toacc_id);
+            }
             else error.showMessageBox("Form Source undefined...\n");
             return true;
         }
@@ -35,7 +41,7 @@ public class Validation {
     }
     
     public boolean regisVal(String first, String last, String dob, String phone, String address){
-        if (db.insertBalance(0) && db.insertInfo(first,last,dob,phone,address)) return true;
+        if (db.insertBalance(1000000) && db.insertInfo(first,last,dob,phone,address)) return true;
         else return false;
     }
     

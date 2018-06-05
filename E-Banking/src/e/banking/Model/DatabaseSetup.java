@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 
 public class DatabaseSetup {
@@ -15,9 +16,9 @@ public class DatabaseSetup {
     private Statement stm = null;
     private ResultSet rs = null;
     private String query = null;
-    private String url = "jdbc:mysql://localhost/ebanking";
+    private String url = "jdbc:mysql://localhost/ebanking?verifyServerCertificate=false&useSSL=true";
     private String username = "root";
-    private String password = "";
+    private String password = "lala";
 
     ErrorMessage error = new ErrorMessage();
 
@@ -186,7 +187,35 @@ public class DatabaseSetup {
             return false;
         }
     }
-
+    
+    public void insertHistoryWith(int acc_id, double withdraw){
+        connectDB();
+        
+        LocalDate date = LocalDate.now();
+        try {
+            query = "INSERT INTO transaction VALUES(NULL, "+acc_id+", 2, NULL, "+ withdraw + "," + date +";";
+            rs = stm.executeQuery(query);
+            rs.close(); 
+                        
+        }catch (SQLException e){
+            error.showMessageBox("Error recording transaction , " + e);
+        }
+    }
+    
+    public void insertHistoryTrans(int acc_id, double withdraw, int toacc_id){
+        connectDB();
+        
+        LocalDate date = LocalDate.now();
+        try {
+            query = "INSERT INTO transaction VALUES(NULL, "+acc_id+", 2, " + toacc_id + ", "+ withdraw + "," + date +";";
+            rs = stm.executeQuery(query);
+            rs.close(); 
+                        
+        }catch (SQLException e){
+            error.showMessageBox("Error recording transaction , " + e);
+        }
+    }
+    
     public String[][] transactionData(int acc_id) {
         connectDB();
         String info = null;
