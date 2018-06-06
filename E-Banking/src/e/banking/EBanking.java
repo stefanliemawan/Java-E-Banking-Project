@@ -1,7 +1,6 @@
 package e.banking;
 
 import e.banking.View.LoginForm;
-import e.banking.View.MainForm;
 
 public class EBanking {
     
@@ -10,8 +9,6 @@ public class EBanking {
             LoginForm login = new LoginForm();
             login.view();
             
-//            MainForm main = new MainForm();
-//            main.view();
             
     }
     

@@ -17,6 +17,7 @@ public class AdminForm extends Form {
     
     JButton button1 = new JButton("Change PIN");
     JButton button2 = new JButton("Change Password");
+    JButton button3 = new JButton("Log Out");
     
     public void button() {
         button1.setFont(h3);
@@ -38,12 +39,22 @@ public class AdminForm extends Form {
             ChPassForm ch = new ChPassForm();
             ch.view();
         });
+        
+        button3.setFont(h3);
+        button3.setBounds(460,320,120,40);
+        button3.addActionListener((ActionEvent e) -> {
+            //open change password
+            frame.dispose();
+            LoginForm login = new LoginForm();
+            login.view();
+        });
     }
     
     public void panel() {
         panel.add(super.createBackBtn(frame,main));
         panel.add(button1);
         panel.add(button2);
+        panel.add(button3);
     }
     
     public void view() {

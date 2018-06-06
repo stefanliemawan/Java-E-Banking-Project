@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
-import java.awt.event.WindowEvent;
 
 
 public class  HistoryForm extends Form {
@@ -35,11 +34,11 @@ public class  HistoryForm extends Form {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setVisibleRowCount(5);
         list.setFont(h3);
-        list.setBounds(20,60,360,460);
+        list.setBounds(20,60,460,460);
         list.setForeground(black);
 
 
-        for (int i=lastindex+1; i<data.length;i++) {
+        for (int i=lastindex; i<data.length;i++) {
             if (data[i][0] == null) {
                 break;
             } else {
@@ -69,7 +68,7 @@ public class  HistoryForm extends Form {
         dialog.getContentPane().add(panel);
         dialog.setVisible(true);
         dialog.setResizable(false);
-        dialog.setSize(400,600);
+        dialog.setSize(600,600);
         dialog.setLocationRelativeTo(null);
     }
     

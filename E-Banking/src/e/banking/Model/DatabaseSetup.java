@@ -191,14 +191,12 @@ public class DatabaseSetup {
     public void insertHistoryWith(int acc_id, double withdraw){
         connectDB();
         
-        LocalDate date = LocalDate.now();
         try {
-            query = "INSERT INTO transaction VALUES(NULL, "+acc_id+", 2, NULL, "+ withdraw + "," + date +";";
-            rs = stm.executeQuery(query);
-            rs.close(); 
+            query = "INSERT INTO transaction VALUES(NULL, "+acc_id+", 2, NULL, "+ withdraw + ",now());";
+            stm.execute(query);
                         
         }catch (SQLException e){
-            error.showMessageBox("Error recording transaction , " + e);
+            error.showMessageBox("Error recording transaction , " + query);
         }
     }
     
@@ -207,31 +205,42 @@ public class DatabaseSetup {
         
         LocalDate date = LocalDate.now();
         try {
-            query = "INSERT INTO transaction VALUES(NULL, "+acc_id+", 2, " + toacc_id + ", "+ withdraw + "," + date +";";
-            rs = stm.executeQuery(query);
-            rs.close(); 
-                        
+            query = "INSERT INTO transaction VALUES(NULL, "+acc_id+", 1, " + toacc_id + ", "+ withdraw + ",now());";
+            stm.execute(query);
+                      
+            query = "INSERT INTO transaction VALUES(NULL, "+toacc_id+", 4,"+acc_id+", "+ withdraw + ",now());";
+            stm.execute(query);
         }catch (SQLException e){
-            error.showMessageBox("Error recording transaction , " + e);
+            error.showMessageBox("Error recording transaction , " + query);
         }
     }
     
     public String[][] transactionData(int acc_id) {
         connectDB();
         String info = null;
+        int check = 0;
         int i = 0;
         String[][] data = new String[1000][1];
         try {
             query = "select * from transaction where acc_id = " + acc_id + ";";
             rs = stm.executeQuery(query);
             while (rs.next()){
-                info = (rs.getString(1) +" "+ rs.getString(2)+" "+ rs.getString(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
+                check = rs.getInt(3);
+                
+                if(check == 1){
+                    info = (rs.getString(6)+" send to: "+rs.getString(4)+" amount: "+rs.getString(5));
+                }else if(check == 2){
+                    info = (rs.getString(6)+" withdraw amount: "+rs.getString(5));
+                }else if(check == 4){
+                    info = (rs.getString(6)+" received amount: "+rs.getString(5)+" from "+rs.getString(4));
+                }
+                //info = (rs.getString(1) +" "+ rs.getString(2)+" "+ rs.getString(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
                 data[i][0] = info;
                 i++;}
         } catch (SQLException e) {
             error.showMessageBox("error when retrieving transaction" + e);
         }
-        i=0;
+      
         return data;
     }
     

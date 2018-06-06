@@ -50,8 +50,10 @@ public class Validation {
         else return false;
     }
     
-    public boolean transVal(int toAcc_id){
-        if (db.searchtoAccId(toAcc_id)) return true;
+    public boolean transVal(double amount, int toAcc_id){
+        int acc_id = state.getAcc_ID();
+
+        if (db.searchtoAccId(toAcc_id) && db.selectBalance(db.selectBalanceId(acc_id))>=amount) return true;
         else return false;
     }
     

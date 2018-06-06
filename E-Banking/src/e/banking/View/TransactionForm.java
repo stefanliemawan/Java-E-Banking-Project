@@ -51,9 +51,11 @@ public class TransactionForm extends Form {
         button1.addActionListener((ActionEvent e) -> {
             //submit
             try {
-                if (val.transVal(Integer.parseInt(get_toAccid()))) {
+                if (val.transVal(Double.parseDouble(getAmount()), Integer.parseInt(get_toAccid()))) {
                     pin.view(Double.parseDouble(getAmount()), Integer.parseInt(get_toAccid()));
                     frame.dispose();
+                }else {
+                    error.showMessageBox("Amount not valid, please re-check amount\n");
                 }
             }catch (NumberFormatException c) {
                 error.showMessageBox("Some of your input are not valid, please re-check\n" + c);

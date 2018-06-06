@@ -47,6 +47,8 @@ public class WithdrawalForm extends Form {
                 if (val.withVal(Double.parseDouble(getWithdraw()))) {
                     pin.view(Double.parseDouble(getWithdraw()), 0);
                     frame.dispose();
+                }else {
+                    error.showMessageBox("Amount not valid, please re-check amount\n");
                 }
             }catch (NumberFormatException c) {
                 error.showMessageBox("Some of your input are not valid, please re-check\n" + c);
