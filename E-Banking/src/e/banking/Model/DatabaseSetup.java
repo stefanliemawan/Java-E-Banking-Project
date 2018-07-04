@@ -22,7 +22,7 @@ public class DatabaseSetup {
 
     ErrorMessage error = new ErrorMessage();
 
-    public void connectDB() {
+    public void connectDB() { // Connect to Database Server
         try {
             conn = DriverManager.getConnection(url, username, password);
             stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -31,7 +31,7 @@ public class DatabaseSetup {
         }
     }
 
-    public boolean insertAccount(int id, String pass, int pin, int info_id, int balance_id) {
+    public boolean insertAccount(int id, String pass, int pin, int info_id, int balance_id) { // Insert into Account table
         connectDB();
         try {
             query = "INSERT INTO Account VALUES(" + id + ",\"" + pass + "\"," + pin + "," + info_id + "," + balance_id + ");";
@@ -43,7 +43,7 @@ public class DatabaseSetup {
         }
     }
 
-    public boolean insertBalance(double balance) {
+    public boolean insertBalance(double balance) { // Insert into Balance table
         connectDB();
         try {
             query = "INSERT INTO Balance VALUES(NULL," + balance + ");";
@@ -55,7 +55,7 @@ public class DatabaseSetup {
         }
     }
 
-    public boolean insertInfo(String fname, String lname, String dob, String phone, String address) {
+    public boolean insertInfo(String fname, String lname, String dob, String phone, String address) { // Insert into Info table
         connectDB();
         try {
             query = "INSERT INTO Info VALUES(NULL,\"" + fname + "\",\"" + lname + "\",\"" + dob + "\",\"" + phone + "\",\"" + address + "\");";
@@ -67,7 +67,7 @@ public class DatabaseSetup {
         }
     }
 
-    public boolean insertTransaction(int acc_id, int type_id, int quantity, String date) {
+    public boolean insertTransaction(int acc_id, int type_id, int quantity, String date) { // Insert into Transaction table (with one null column)
         connectDB();
         try {
             query = "INSERT INTO Transaction VALUES(NULL," + acc_id + "," + type_id + ",NULL," + quantity + ",\"" + date + "\");";
@@ -79,7 +79,7 @@ public class DatabaseSetup {
         }
     }
 
-    public boolean insertTransactionTo(int acc_id, int type_id, int to_id, int quantity, String date) {
+    public boolean insertTransactionTo(int acc_id, int type_id, int to_id, int quantity, String date) { // Insert into Account table (full column)
         connectDB();
         try {
             query = "INSERT INTO Transaction VALUES(NULL," + acc_id + "," + type_id + "," + to_id + "," + quantity + ",\"" + date + "\");";
@@ -91,7 +91,7 @@ public class DatabaseSetup {
         }
     }
 
-    public boolean insertType(String name) {
+    public boolean insertType(String name) { // Insert into Type table from Type table
         connectDB();
         try {
             query = "INSERT INTO Type VALUES(NULL,\"" + name + "\");";
@@ -103,7 +103,7 @@ public class DatabaseSetup {
         }
     }
 
-    public int selectLastAcc_ID() {
+    public int selectLastAcc_ID() { // Select the latest Acc_ID from Account table
         int result = 0;
         connectDB();
         try {
@@ -118,7 +118,7 @@ public class DatabaseSetup {
         return result;
     }
 
-    public int selectLastInfo_ID() {
+    public int selectLastInfo_ID() { // Select the latest Info_ID from Info table
         int result = 0;
         connectDB();
         try {
@@ -133,7 +133,7 @@ public class DatabaseSetup {
         return result;
     }
 
-    public int selectLastBalance_ID() {
+    public int selectLastBalance_ID() { // Select the latest Balance_ID from Balance table
         int result = 0;
         connectDB();
         try {
@@ -148,7 +148,7 @@ public class DatabaseSetup {
         return result;
     }
 
-    public String selectLastDOB() {
+    public String selectLastDOB() { // Select the lates Date of Birth from Info table
         String dob = null;
         connectDB();
         try {
@@ -162,8 +162,7 @@ public class DatabaseSetup {
         return dob;
     }
 
-    //changing to new password
-    public boolean ChangePassword(int acc_id, String password) {
+    public boolean ChangePassword(int acc_id, String password) { // Update new Password
         connectDB();
         try {
             query = "UPDATE account SET password =\"" + password + "\" where acc_id =" + acc_id + ";";
@@ -175,8 +174,7 @@ public class DatabaseSetup {
         }
     }
 
-    //changing to new pin
-    public boolean ChangePIN(int acc_id, int pin) {
+    public boolean ChangePIN(int acc_id, int pin) { // Update new PIN
         connectDB();
         try {
             query = "UPDATE account SET pin = " + pin + " where acc_id =" + acc_id + ";";
@@ -188,7 +186,7 @@ public class DatabaseSetup {
         }
     }
     
-    public void insertHistoryWith(int acc_id, double withdraw){
+    public void insertHistoryWith(int acc_id, double withdraw){ // Insert History table with Withdrawal data
         connectDB();
         
         try {
@@ -200,7 +198,7 @@ public class DatabaseSetup {
         }
     }
     
-    public void insertHistoryTrans(int acc_id, double withdraw, int toacc_id){
+    public void insertHistoryTrans(int acc_id, double withdraw, int toacc_id){ // Insert History table with Transaction data
         connectDB();
         
         LocalDate date = LocalDate.now();
@@ -215,7 +213,7 @@ public class DatabaseSetup {
         }
     }
     
-    public String[][] transactionData(int acc_id) {
+    public String[][] transactionData(int acc_id) { // Select Datas from Transaction table
         connectDB();
         String info = null;
         int check = 0;
@@ -234,7 +232,6 @@ public class DatabaseSetup {
                 }else if(check == 4){
                     info = (rs.getString(6)+" received amount: "+rs.getString(5)+" from "+rs.getString(4));
                 }
-                //info = (rs.getString(1) +" "+ rs.getString(2)+" "+ rs.getString(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
                 data[i][0] = info;
                 i++;}
         } catch (SQLException e) {
@@ -244,7 +241,7 @@ public class DatabaseSetup {
         return data;
     }
     
-    public String selectPassword(int acc_id) {
+    public String selectPassword(int acc_id) { // Select Password from Account table
         String password = null;
         connectDB();
         try {
@@ -258,7 +255,7 @@ public class DatabaseSetup {
         return password;
     }
     
-    public int selectPIN(int acc_id) {
+    public int selectPIN(int acc_id) { // Select PIN from Account table
         int PIN = 0;
         connectDB();
         try {
@@ -272,7 +269,7 @@ public class DatabaseSetup {
         return PIN;
     }
     
-    public int selectBalanceId(int acc_id) {
+    public int selectBalanceId(int acc_id) { // Select Balance_ID from Account table
         int balanceid = 0;
         connectDB();
         try {
@@ -286,7 +283,7 @@ public class DatabaseSetup {
         return balanceid;
     }
     
-    public double selectBalance(int bal_id) {
+    public double selectBalance(int bal_id) { // Select Balance from Account table
         double balance = 0;
         connectDB();
         try {
@@ -300,7 +297,7 @@ public class DatabaseSetup {
         return balance;
     }
     
-    public boolean searchtoAccId(int acc_id) {
+    public boolean searchtoAccId(int acc_id) { // Search Acc_ID
         connectDB();
         try {
             query = "SELECT * FROM account WHERE acc_id ="+acc_id+";";
@@ -313,7 +310,7 @@ public class DatabaseSetup {
         return false;
     }
     
-    public boolean withdraw(int acc_id, double withdraw){
+    public boolean withdraw(int acc_id, double withdraw){ // Withdraw balance from the Account
         connectDB();
 
         try {
@@ -334,7 +331,7 @@ public class DatabaseSetup {
         return false;
     }
     
-    public boolean trans(int acc_id, double amount, int toacc_id){
+    public boolean trans(int acc_id, double amount, int toacc_id){ // Do Transaction from one Account to another
         connectDB();
 
         try {
